@@ -38,31 +38,34 @@ Részleges modellek esetén annotációkkal lehet megjelölni a modellt, illetve
 Annotációk
 \subsection{Szemantika}
 \subsubsection{May}
+
 Annotációkkal láthatjuk el a modellt, az alapján, hogy egy modellelem biztosan benne lesz a végleges modellben, vagy pedig még bizonytalan a léte. ’M’ May exist(lehet, hogy benne lesz a végleges modellben), ’E’ Must exist(biztosan benne lesz a végleges modellben). A modell finomításával lépésről lépésre egyre kevesebb ’M’ lesz. ’M’ az vagy átvált ’E’ –re, vagy teljesen kikerül a modellből. Akkor tekinthető a modell véglegesnek, ha már nem szerepel benne ’M’-el megjelölt elem.
 Tegyük fel, hogy nem tudjuk milyen járművet akarunk még modellezni a kezdeti fázisban. Ezért a kiindulási objektummodellben elláttuk May annotációkkal a járműnek az ajtó elemeit. Így finomítás során ezek az elemek később eltűnhetnek de akár meg is maradhatnak. Az a jármű aminek nincs ajtaja lehet akár egy motor, a két ajtós változat pedig egy autó.
-
-\begin{figure}[!ht]
+\begin{figure}[htp]
 	\centering
 	\includegraphics[height=50mm]{figures/may.pdf}
 	\caption{May részlegesség feloldása} 
 \end{figure}
 
+
 \subsubsection{Abs}
+
 Ennek is két különböző annotálási módja lehet: ’P’, Particular (egyedi elem) és ’S’, azaz Set (több elemet jelölhet). Particular az olyan elem, ami már biztosan benne lesz a végleges modellben, azonban a Set olyan elemet jelöl, ami lehet, hogy a végleges modellben több elemként fog megjelenni. Finomítások során az ’S’-el megjelölt
 tagokat szétbontjuk több részre, de a végleges esetnél már csak particular, egyedi elemek szerepelhetnek.
 Az alábbi ábra szerint első lépésben még nincs eldöntve, hogy az autónak egy vagy több motorja lesz. Ezt meg is jelöltük a megfelelő annotációval ('S'). Így a finomítás során lehetséges, hogy marad az egy motoros jármű, de lehet hogy szétbontjuk a motort és a járműbe rakunk egy benzinmotort és egy elektromos motort is.
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[height=50mm, keepaspectratio]{figures/abs.pdf}
-\caption{Abs részlegesség feloldása} 
+\begin{figure}[htp]
+	\centering
+	\includegraphics[height=50mm, keepaspectratio]{figures/abs.pdf}
+	\caption{Abs részlegesség feloldása} 
 \end{figure}
 
-\subsubsection{Var}
+%\subsubsection{Var}
+
 Kétféleképpen lehet annotálni az elemeket: ’C’ Constant (konstans elem) és ’V’ Variable (változó elem). Bizonyos értelemben az Abs fordítottjának lehet tekinteni. Felveszünk több elemet, ami lehet, hogy későbbiekben összeolvasztunk egy elemmé, tehát fenn áll a lehetősége annak, hogy két elem megegyezik. Amikor elkezdünk egy modellt, akkor nem biztos, hogy meg tudjuk mondani elemekről, hogy azok a későbbiekben azonosak-e vagy különbözőek. A végleges modellben már csak konstans elemek lehetnek.
 Itt a példában látható, hogy a kezdeti állapotban még két külön kereke van a járműnek egyik kerekén kék dísztárcsa van a másik kereke pedig széles felnivel rendelkezik. Ezek meg lettek jelölve 'V' annotációval. Finomítás után ez megmaradhat ilyen különálló formában, de akár összeolvaszthatjuk ezt a két kereket és a végeredményben egy kerék marad, ami mind a kettő kerék tulajdonságát magában hordozza.
 
-\begin{figure}[!ht]
+\begin{figure}[htp]
 	\centering
 	\includegraphics[height=50mm, keepaspectratio]{figures/var.pdf}
 	\caption{Var részlegesség feloldása} 
