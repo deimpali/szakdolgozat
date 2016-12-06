@@ -7,10 +7,10 @@
 %\subsection{Abs}
 %\subsection{Var}
 %\subsection{OW}
-\section{Bemutatás egy példa segítségével}
+\section{Felvezetés}
 %pl osztálydiagram
 
-A részleges modellezést legegyszerűbben egy gyakorlati példán lehet bemutatni. Vegyük példának az UML osztálydiagramját. Az UML (Unified Modeling Language) egy szabványos, objektumorientált modellezési nyelv, ami a tervezést, fejlesztést és egyéb folyamatokat segíti. Ezt a nyelvet informatikában és egyéb üzleti területeken egyaránt alkalmazzák. Magában foglal több diagram típust is.
+A részleges modellezést legegyszerűbben egy gyakorlati példán lehet bemutatni. Vegyük példának az UML \cite{UML} osztálydiagramját. Az UML (Unified Modeling Language) egy szabványos, objektumorientált modellezési nyelv, ami a tervezést, fejlesztést és egyéb folyamatokat segíti. Ezt a nyelvet informatikában és egyéb üzleti területeken egyaránt alkalmazzák. Magában foglal több diagram típust is.
 \par
 Az osztálydiagram egy strukturális diagram, segítségével egy rendszerben előforduló objektumokat, azok tulajdonságait és kapcsolatait lehet modellezni. Az objektumok téglalapokkal vannak jelezve, a hozzájuk tartozó attribútumok a téglalapon belül helyezkednek el és az elemek összekötésével a kapcsolatokat lehet jelezni.
 \par
@@ -26,7 +26,7 @@ Az alábbi példában (lásd \autoref{jarmu}) egy járműnek az osztálydiagramj
 \section{Részleges modell}
 Részleges modell segítségével lehetőség van tervezői döntések dokumentálására. Általában a modellező eszközökkel csak érvényes modelleket lehet készíteni. Így a modell készítője belekényszerül olyan döntések meghozatalába, amiket csak később kéne meghozni. Emiatt elveszhetnek tervezői döntések. Részleges modellben lehetőség van ezeket a kétséges helyzeteket már a modellezés szintjén kezelni. Így a modell nem csupán strukturális információt tartalmaz, hanem a részlegességéről is, tehát hogy teljesen specifikált a modell vagy sem. Az előbbi példát tekintve, lehetséges az hogy a járműnek egyáltalán nem szeretnénk ajtót, mert például egy motort szeretnénk modellezni. Ekkor feleslegessé válik teljesen az ajtó jelenléte a modellben. Erről információt az UML szabályai szerint nem tudunk tárolni. Vagy feljegyezzük a lehetséges változtatást, vagy pedig létrehozunk egy másik diagramot, amibe van a járművön ajtó és egy olyat amiben nincs. Ezek egyike sem tűnik jó megoldásnak. Egy ilyen picike diagram esetén még akár átlátható de egy nagyobb, akár több száz elemből álló modell esetén, ha máshol is van ilyen kétség a végleges modellel kapcsolatban, akkor már kezelhetetlenné válik. Például 5 ilyen döntés esetében 2\^5 darab diagramot kéne párhuzamosan fejleszteni.
 \par
-Lehetőség van a modell finomítására is (lásd \autoref{finomit}). Finomítás során a részleges modellből kikerülnek bizonytalan elemek. Ez azt jelenti, hogy a modellben jelzett részlegesség mértéke csökkenthető és ennek eredményeképpen véges számú finomítás után a modellből teljesen eltűnnek a részlegességek.
+Lehetőség van a modell finomítására is (lásd \autoref{finomit}). Finomítás során a parciális modellből kikerülnek bizonytalan elemek. Ez azt jelenti, hogy a modellben jelzett részlegesség mértéke csökkenthető és ennek eredményeképpen véges számú finomítás után a modellből teljesen eltűnnek a részlegességek.
 
 \begin{figure}[!ht]
 	\centering
@@ -36,8 +36,8 @@ Lehetőség van a modell finomítására is (lásd \autoref{finomit}). Finomít�
 \end{figure}
 
 \subsection{Szintaktika}
-Részleges modellek esetén annotációkkal lehet megjelölni a modellt, illetve annak elemeit. Modellezés során 4 fajta részlegességet jelölhetünk meg. 
-Annotációk
+Részleges modellek esetén annotációkkal lehet megjelölni a modellt, illetve annak elemeit. Modellezés során 4 fajta részlegességet jelölhetünk meg \cite{Salay}. Annotációk a modell minden elemére kerülhetnek, lehet attribútumra, objektumokra vagy akár élekre is.
+
 
 \subsection{Szemantika}
 \subsubsection{May}
@@ -53,7 +53,8 @@ Tegyük fel, hogy nem tudjuk milyen járművet akarunk még modellezni a kezdeti
 \end{figure}
 
 \subsubsection{Abs}
-Ennek is két különböző annotálási módja lehet: \textsf{’P’}, Particular (egyedi elem) és \textsf{’S’}, azaz Set (egy vagy több elemet jelölhet). Particular az olyan elem, ami már biztosan benne lesz a végleges modellben, azonban a Set olyan elemet jelöl, ami lehet, hogy a végleges modellben több elemként fog megjelenni. Finomítások során az \textsf{’S’}-el megjelölt tagokat szétbontjuk több részre vagy meghagyhatjuk egyedi elemként, de a végleges modellben már csak particular, egyedi elemek szerepelhetnek.
+Ennek is két különböző annotálási módja lehet: \textsf{’P’}, Particular (egyedi elem) és \textsf{’S’}, azaz Set (egy vagy több elemet jelölhet). Particular az olyan elem, ami már biztosan benne lesz a végleges modellben, azonban a Set olyan elemet jelöl, ami lehet, hogy a végleges modellben több elemként fog megjelenni. Finomítások során az \textsf{’S’}-el megjelölt tagokat szétbontjuk több részre vagy meghagyhatjuk egyedi elemként, de a végleges modellben már csak egyedi elemek szerepelhetnek. 
+%Legyen 'e' a modellnek egy eleme S(e) egy Set annotációval megjelölt elem. Finomítás után ez az elem 'n' darab elemre válhat szét, ahol \in
 \par
 Diagram kezdeti fázisában még nincs eldöntve, hogy az ülés az egyedi elem vagy sem, ezért meg van jelölve egy \textsf{’S’} annotációval. Finomítás során lehetséges, hogy az ülést megtartjuk eredeti formájában. A másik lehetőség viszont az, hogy szétbontjuk első illetve hátsó ülésre. Ebben az esetben ugyan azok a tulajdonságok lesznek meg mind a két ülésben de mégis modell szempontjából külön kezelendőek. Erre példa az alábbi diagramrészlet (lásd \autoref{abs}).
 

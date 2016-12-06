@@ -17,16 +17,22 @@ Akkor M* metamodell meghatározza az M1 modellben lévő elemeket, attribútumok
 \end{figure}
 
 \subsection{EMF}
-EMF az Eclipse Modelling Framework rövidítése. Ez egy olyan keretrendszer, mely az eclips-be beépülve teszi lehetővé modellek készítését. Segítségével könnyedén grafikus eszközökkel lehet metamodelleket alkotni, melyből később konkrét példánymodellt készíthetünk. Továbbá lehetőséget biztosít metamodellből java kódot generálni, ami leképezi a modell elemeit osztályokba és a hozzá tartozó kapcsolatokat és attribútumokat is.
+\nocite{EMFtut}
+EMF az Eclipse Modelling Framework \cite{EMF} rövidítése. Ez egy olyan keretrendszer, mely az eclips-be beépülve teszi lehetővé modellek készítését. Segítségével könnyedén grafikus eszközökkel lehet metamodelleket alkotni, melyből később konkrét példánymodellt készíthetünk. Továbbá lehetőséget biztosít metamodellből java kódot generálni, ami leképezi a modell elemeit osztályokba és a hozzá tartozó kapcsolatokat és attribútumokat is.
 
 \subsection{Sirius}
-Ez egy szintén Eclipse-be épülő keretrendszer. Ez lehetővé teszi hogy EMF modellekhez vizuális megjelenítő és szerkesztő felületet készítsünk. Rendkívül sokrétű lehetőséget nyújt. Lehetőség van új objektumok létrehozására szerkesztésére és biztosít validációs lehetőségeket is. Az egyes elemek módosítását megszorításokhoz lehet kötni. Egy úgynevezett "viewpoint specification" projektet kell létrehozni, majd ezen belül egy "odesign" kiterjesztésű fájlt. Ebben a fájlban be kell állítani milyen modellel szeretnénk dolgozni és azután lehet a modellhez tartozó editor működését és megjelenését definiálni. Ki lehet választani milyen típusú reprezentációt szeretnék a modellemnek. Például: diagram, táblázat, fastruktúra. Meg lehet adni hogy a modellben lévő elemek vizuálisan hogyan jelenjenek meg. Ez a stílus akár dinamikusan változhat az elem tulajdonságától függően. Ebben a fájlban lehet pontosan megadni, hogy mi történjen egy elem létrehozásánál, törlésénél vagy módosításánál. Ezen események bekövetkezése kiválthatnak további eseményeket. Például kitörlök egy elemet és ennek következtében módosítok egy másikat.
+\nocite{SiruisTutNagyASz}
+\nocite{SiruisTutStart}
+\nocite{SiruisTutAdv}
+Ez egy szintén Eclipse-be épülő keretrendszer \cite{Sirius}. Ez lehetővé teszi hogy EMF modellekhez vizuális megjelenítő és szerkesztő felületet készítsünk. Rendkívül sokrétű lehetőséget nyújt. Lehetőség van új objektumok létrehozására szerkesztésére és biztosít validációs lehetőségeket is. Az egyes elemek módosítását megszorításokhoz lehet kötni. Egy úgynevezett "viewpoint specification" projektet kell létrehozni, majd ezen belül egy "odesign" kiterjesztésű fájlt. Ebben a fájlban be kell állítani milyen modellel szeretnénk dolgozni és azután lehet a modellhez tartozó editor működését és megjelenését definiálni. Ki lehet választani milyen típusú reprezentációt szeretnék a modellemnek. Például: diagram, táblázat, fastruktúra. Meg lehet adni hogy a modellben lévő elemek vizuálisan hogyan jelenjenek meg. Ez a stílus akár dinamikusan változhat az elem tulajdonságától függően. Ebben a fájlban lehet pontosan megadni, hogy mi történjen egy elem létrehozásánál, törlésénél vagy módosításánál. Ezen események bekövetkezése kiválthatnak további eseményeket. Például kitörlök egy elemet és ennek következtében módosítok egy másikat.
 
 \subsection{Java}
 Objektumorientált programozási nyelv. EMF keretrendszer biztosít lehetőséget arra, hogy az elkészített modellből Java kód generálható. Az EMF modellből kigenerált kódot futtatva egy új Eclipse alkalmazás indítható, melyben már lehetőség van a metamodellben definiált modell példányosítására. Siriusban képes külső Java kód futtatására. Ezzel például bővíthető a szerkesztőfelület funkcionalitása.
 
 \subsection{Aql}
-Az Annotation Query Language rövidítése. Lambda kifejezésekhez hasonlóan lehet alkalmazni. 
+\nocite{Acceleo}
+\nocite{OCL}
+Az Annotation Query Language \cite{Aql} rövidítése. Lambda \cite{Lambda} kifejezésekhez hasonlóan lehet alkalmazni. 
 %A lambda kifejezés egy névtelen függvény, ami 
 Az editor elkészítésébe van nagy szerepe. Az egyes funkciókat előfeltételeit lehet leírni ezen a nyelven. 
 
