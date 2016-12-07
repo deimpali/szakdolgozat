@@ -1,5 +1,5 @@
 %----------------------------------------------------------------------------
-\chapter{Előismeretek}
+\chapter{Előismeretek}\label{chapter:preknowledge}
 %----------------------------------------------------------------------------
 
 %\section{Részleges modellek fajtái}
@@ -7,14 +7,14 @@
 %\subsection{Abs}
 %\subsection{Var}
 %\subsection{OW}
-\section{Felvezetés}
+\section{Modellezési esettanulmány}
 %pl osztálydiagram
 
-A részleges modellezést legegyszerűbben egy gyakorlati példán lehet bemutatni. Vegyük példának az UML \cite{UML} osztálydiagramját. Az UML (Unified Modeling Language) egy szabványos, objektumorientált modellezési nyelv, ami a tervezést, fejlesztést és egyéb folyamatokat segíti. Ezt a nyelvet informatikában és egyéb üzleti területeken egyaránt alkalmazzák. Magában foglal több diagram típust is.
+A részleges modellezést legegyszerűbben egy gyakorlati példán lehet bemutatni. Vegyük példának az UML \cite{UML} osztálydiagramját. Az UML (Unified Modeling Language) egy szabványos modellezési nyelv, ami a tervezést, fejlesztést és egyéb folyamatokat segíti. Ezt a nyelvet informatikában és egyéb üzleti területeken egyaránt alkalmazzák. Magában foglal több diagram típust is.
 \par
-Az osztálydiagram egy strukturális diagram, segítségével egy rendszerben előforduló objektumokat, azok tulajdonságait és kapcsolatait lehet modellezni. Az objektumok téglalapokkal vannak jelezve, a hozzájuk tartozó attribútumok a téglalapon belül helyezkednek el és az elemek összekötésével a kapcsolatokat lehet jelezni. 
+Az osztálydiagram egy strukturális diagram, segítségével egy rendszerben előforduló objektumokat, azok tulajdonságait és kapcsolatait lehet modellezni. Az osztályok téglalapokkal vannak jelezve, a hozzájuk tartozó attribútumok a téglalapon belül helyezkednek el és az elemek összekötésével a kapcsolatokat lehet jelezni. 
 \par
-Az alábbi példában (lásd \autoref{jarmu}) egy járműnek az osztálydiagramja látható. A járműnek vannak attribútumai és tartalmaz ajtót, kereket és üléseket, továbbá van neki egy meghajtása, ami egy absztrakt osztály. Ezek ugyan azon attribútumokkal van ellátva: id, típus, név. A meghajtásnak két leszármazottja van a benzinmotoros és a villanymotoros meghajtás. A benzinmotor tulajdonsága a hengerek száma a villanymotor tulajdonsága pedig az akkumulátor kapacitása.
+Az alábbi példában (lásd \autoref{jarmu}) egy járműnek az osztálydiagramja látható. A járműnek vannak attribútumai és tartalmaz ajtót, kereket és üléseket, továbbá van neki egy meghajtása, ami egy absztrakt osztály. Ezek ugyan azon attribútumokkal van ellátva: azonosító, típus, név. A meghajtásnak két leszármazottja van a benzinmotoros és a villanymotoros meghajtás. A benzinmotor tulajdonsága a hengerek száma a villanymotor tulajdonsága pedig az akkumulátor kapacitása.
 
 \begin{figure}[!ht]
 	\centering
@@ -26,7 +26,7 @@ Az alábbi példában (lásd \autoref{jarmu}) egy járműnek az osztálydiagramj
 \section{Részleges modell}
 Részleges modell segítségével lehetőség van tervezői döntések dokumentálására. Általában a modellező eszközökkel csak érvényes modelleket lehet készíteni. Így a modell készítője belekényszerül olyan döntések meghozatalába, amiket csak később kéne meghozni, emiatt elveszhetnek tervezői döntések. Részleges modellben lehetőség van ezeket a kétséges helyzeteket már a modellezés szintjén kezelni. Így a modell nem csupán a struktúráról tartalmaz információt, hanem a részlegességről is, tehát hogy teljesen specifikált a modell vagy sem. 
 \par
-Az előbbi példát tekintve, lehetséges az hogy a járműnek egyáltalán nem szeretnénk ajtót, mert egy motort akarunk modellezni. Ekkor feleslegessé válik teljesen az ajtó jelenléte a modellben. Erről információt az UML szabályai szerint nem tudunk tárolni. Vagy feljegyezzük a lehetséges változtatást, vagy pedig létrehozunk egy másik diagramot, amibe van a járművön ajtó és egy olyat, amiben nincs. Ezek egyike sem tűnik jó megoldásnak. Egy ilyen picike diagram esetén még akár átlátható de egy nagyobb, akár több száz elemből álló modell esetén, ha máshol is van ilyen kétség a végleges modellel kapcsolatban, akkor már kezelhetetlenné válik. Például 5 ilyen döntés esetében 2\^5 darab diagramot kéne párhuzamosan fejleszteni.
+Az előbbi példát tekintve, lehetséges az hogy a járműnek egyáltalán nem szeretnénk ajtót, mert egy motort akarunk modellezni. Ekkor feleslegessé válik teljesen az ajtó jelenléte a modellben. Erről információt az UML szabályai szerint nem tudunk tárolni. Vagy feljegyezzük a lehetséges változtatást, vagy pedig létrehozunk egy másik diagramot, amibe van a járművön ajtó és egy olyat, amiben nincs. Ezek egyike sem tűnik jó megoldásnak. Egy ilyen egyszerű diagram esetén még akár átlátható de egy nagyobb, akár több száz elemből álló modell esetén, ha máshol is van ilyen kétség a végleges modellel kapcsolatban, akkor már kezelhetetlenné válik. Például 5 ilyen döntés esetében $2^{5}$ darab diagramot kéne párhuzamosan fejleszteni.
 \par
 Lehetőség van a modell finomítására is (lásd \autoref{finomit}). Finomítás során a parciális modellből kikerülnek bizonytalan elemek. Ez azt jelenti, hogy a modellben jelzett részlegesség mértéke csökkenthető és ennek eredményeképpen véges számú finomítás után a modellből teljesen eltűnnek a részlegességek.
 
@@ -39,13 +39,19 @@ Lehetőség van a modell finomítására is (lásd \autoref{finomit}). Finomít�
 
 \subsection{Szintaktika}
 Részleges modellek esetén annotációkkal lehet megjelölni a modellt, illetve annak elemeit. Modellezés során négy fajta részlegességet jelölhetünk meg \cite{Salay}. Annotációk a modell minden elemére kerülhetnek, lehet attribútumra, objektumokra, élekre vagy akár magára a modellre is.
+\begin{itemize}  
+	\item May: modellelemre vonatkozik
+	\item Set: modellelemre vonatkozik
+	\item Var: modellelemre vonatkozik
+	\item OW: modellre vonatkozik
+\end{itemize}
 
 
 \subsection{Szemantika}
 \subsubsection{May}
 Annotációkkal láthatjuk el a modellt az alapján, hogy egy modellelem biztosan benne lesz a végleges modellben, vagy pedig még bizonytalan a léte. \textsf{’M’} May exist (lehet, hogy benne lesz a végleges modellben, de lehet, hogy nem), \textsf{’E’} Must exist (biztosan benne lesz a végleges modellben). A modell finomításával lépésről lépésre egyre kevesebb ’M’ lesz.  \textsf{’M’} az vagy átvált \textsf{’E’}–re, vagy teljesen kikerül a modellből. Akkor tekinthető a modell véglegesnek, ha már nem szerepel benne \textsf{’M’}-el megjelölt elem. Továbbiakban az \textsf{’E’} jelöléssel nem foglalkozom, mert amelyik elemen nincs annotáció, az benne van a modellben.
 \par
-Tegyük fel, hogy nem tudjuk milyen járművet akarunk még modellezni a kezdeti fázisban. Ezért a kiindulási objektummodellben elláttuk May annotációkkal a járműnek az ajtó elemét. Így finomítás során ez az elem később eltűnhet de akár meg is maradhat. Az a jármű aminek nincs ajtaja lehet akár egy motor, a két ajtós változat pedig egy autó. Erre példa az alábbi diagramrészlet (lásd \autoref{may}).
+Tegyük fel, hogy nem tudjuk milyen járművet akarunk még modellezni a kezdeti fázisban. Ezért a kiindulási objektummodellben elláttuk May annotációkkal a járműnek az ajtó elemét. Így finomítás során ez az elem később eltűnhet de akár meg is maradhat. Ha nem akarjuk modellezni az ajtók számát a jármű lehet akár egy motor. Ahol két ajtó jelenik meg a modellben ott a jármű lehet egy autó. Erre példa az alábbi diagramrészlet (lásd \autoref{may}).
 
 \begin{figure}[htp]
 	\centering
