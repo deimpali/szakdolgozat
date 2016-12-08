@@ -38,9 +38,9 @@ Az editor elkészítésébe van nagy szerepe. Az egyes funkciókat előfeltétel
 
 %\section{Metamodell szerkezete}
 
-\subsection{Általános modell}
+\section{Általános modell}
 
-\subsubsection{Jellemzés}
+\subsection{Jellemzés}
 Egy általános modell elemekből áll, amik tulajdonságokkal rendelkeznek, az elemek között pedig kapcsolatok vannak. Tehát olyan meta modellt kell készíteni, ami mindezeket magába foglalja. A metamodell elkészítéséhez EMF-et használtam (lásd \autoref{model}).
 
 \begin{figure}[!ht]
@@ -50,13 +50,13 @@ Egy általános modell elemekből áll, amik tulajdonságokkal rendelkeznek, az 
 	\label{model}
 \end{figure}
 
-\subsubsection{PSObject}
+\subsection{PSObject}
 A modellben a PSObject-ek reprezentálják az általános modell elemeit. Ez bármilyen típusú lehet. Rendelkezik névvel (name), referált osztállyal (ReferredEClass) és a referált osztály konkrét példányának az azonosítójával (uri). így a PSObject-en keresztül tudunk részlegességet rendelni a hivatkozott objektumhoz, ami erre egyébként nem lenne képes. PSObjectek tartalmaznak tetszőleges mennyiségű referenciát másik objektumokra (PSReferenceToObject) és attribútumokra (PSReferenceToAttribute).
 
-\subsubsection{PSReference}
+\subsection{PSReference}
  Az elemek közötti kapcsolatokat reprezentálják. Fontos, hogy ezek is külön elemként jelenjenek meg a modellben, hisz ehhez is szeretnénk majd részlegességet társítani annotációk formájában. A PSReference egy absztrakt objektum két leszármazottja van a  PSReferenceToAttribute és PSReferenceToObject. Erre azért volt szükség mert későbbiekben a szerkesztő elkészítésénél más funkcionalitások vonatkoznak rájuk és logikailag is kifejezi, hogy az attribútum valamelyik objektum része és csak azzal együtt érvényes, míg egy objektum önmagában is értelmezhető. Rendelkezik névvel (name), referált osztállyal (ReferredEClass) és típussal (type). Van neki forrásobjektuma (sourceObject) és célobjektuma (targetObject) vagy célattribútuma (targetAttribute).
 
-\subsubsection{PSAttribute}
+\subsection{PSAttribute}
 Az objektumok tulajdonságai külön egy PSAttribute nevű elemben vannak hozzárendelve az objektumokhoz, így lehetőség van az attribútumokhoz is részlegességet rendelni. Lehetséges továbbá az is hogy egy attribútum több objektumhoz is tartozzon, ugyanis az attribútumokat nem közvetlenül a PSObjeckt-ek tárolják hanem csak hivatkoznak rájuk. Azonban az attribútumok tárolják a rájuk mutató PSReference-ek referenciáit. PSAttribute is absztrakt ezért több fajtája lehet:
 
 \begin{itemize}  
@@ -67,12 +67,12 @@ Az objektumok tulajdonságai külön egy PSAttribute nevű elemben vannak hozzá
 \end{itemize}
 
 
-\subsection{Kiegészítés részleges modellé}
+\section{Kiegészítés részleges modellé}
 
-\subsubsection{OW részlegesség}
+\subsection{OW részlegesség}
 Az \textit{OW} részlegességet a modell gyökerében egy boolean változóval tudjuk szemléltetni.
 
-\subsubsection{PSType}
+\subsection{PSType}
 Minden egyes modellbeli elemhez tudnunk kell társítani annotációkat. Ezt a PSType-al tehetjük meg (lásd \autoref{partialmodel}), amiből leszármaznak a már említett részlegesség fajták (\textit{May}, \textit{Var}, \textit{Abs}):
 
 \begin{itemize}  
