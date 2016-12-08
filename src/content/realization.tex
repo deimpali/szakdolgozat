@@ -1,46 +1,54 @@
 %----------------------------------------------------------------------------
 \chapter{Megvalósítás}\label{chapter:realization}
 %----------------------------------------------------------------------------
-\section{Szükséges eszközök}
+\section{Felhasznált technológiák}
 \subsection{Eclipse}
-A feladatot Eclipse-be integrált tervezőeszközként valósítottam meg. Ez egy szabadon bővíthető nyílt forráskódú szoftverkeretrendszer. Sokféle modellező eszköz integrálható  Eclipse-be. Azért ezt választottam mert a modellezés általam használt részeihez is biztosít megfelelő keretrendszereket.
+A feladatot Eclipse-be \cite{Eclipse} integrált tervezőeszközként valósítottam meg. Ez egy szabadon bővíthető nyílt forráskódú szoftverkeretrendszer. Sokféle modellező eszköz integrálható  Eclipse-be. Azért ezt választottam mert a modellezés általam használt részeihez is biztosít megfelelő keretrendszereket.
 \subsection{Metamodell}
 A metamodell összefoglalja egy modellezési nyelv legfőbb fogalmait, relációit és alapvető struktúráját. Egy olyan alapséma, amire illeszkedik az összes hozzá tartozó alacsonyabb absztrakciós szinttel rendelkező modell. 
 Tegyük fel hogy M* modell M1 modellnek a metamodellje.
-Akkor M* metamodell meghatározza az M1 modellben lévő elemeket, attribútumokat és ezeknek lehetséges kapcsolatait. Például az alábbi modelleknek (lásd \autoref{jarmupeldany}) a már korábban említett jármű modell (lásd \autoref{jarmu}) tekinthető metamodelljének. Bal oldalon egy motor példánymodellje, jobb oldalon pedig egy biciklinek a modellje látható.
+Akkor M* metamodell meghatározza az M1 modellben lévő elemeket, attribútumokat és ezeknek lehetséges kapcsolatait. Például az alábbi modelleknek (lásd \autoref{jarmupeldany}) a már korábban említett jármű modell tekinthető metamodelljének. Bal oldalon egy motor példánymodellje, jobb oldalon pedig egy biciklinek a modellje látható.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=130mm]{figures/peldany.pdf}
+	\includegraphics[width=110mm]{figures/meta.pdf}
 	\caption{Jármű metamodellhez tartozó példánymodellek} 
 	\label{jarmupeldany}
 \end{figure}
 
 \subsection{EMF}
 \nocite{EMFtut}
-EMF az Eclipse Modelling Framework \cite{EMF} rövidítése. Ez egy olyan keretrendszer, mely az eclips-be beépülve teszi lehetővé modellek készítését. Segítségével könnyedén grafikus eszközökkel lehet metamodelleket alkotni, melyből később konkrét példánymodellt készíthetünk. Továbbá lehetőséget biztosít metamodellből java kódot generálni, ami leképezi a modell elemeit osztályokba és a hozzá tartozó kapcsolatokat és attribútumokat is.
+EMF az Eclipse Modelling Framework \cite{EMF} rövidítése. Ez egy olyan keretrendszer, mely modellek készítését teszi lehetővé. Az Eclispe-be beépülő EMF modellező eszközök segítségével könnyedén lehet grafikusan metamodelleket alkotni, melyből később konkrét példánymodellt készíthetünk. Továbbá lehetőséget biztosít metamodellből java kódot generálni, ami leképezi a modell elemeit osztályokba és a hozzá tartozó kapcsolatokat és attribútumokat is.
 
 \subsection{Sirius}
 \nocite{SiruisTutNagyASz}
 \nocite{SiruisTutStart}
 \nocite{SiruisTutAdv}
-Ez egy szintén Eclipse-be épülő keretrendszer \cite{Sirius}. Ez lehetővé teszi hogy EMF modellekhez vizuális megjelenítő és szerkesztő felületet készítsünk. Rendkívül sokrétű lehetőséget nyújt. Lehetőség van új objektumok létrehozására szerkesztésére és biztosít validációs lehetőségeket is. Az egyes elemek módosítását megszorításokhoz lehet kötni. Egy úgynevezett "viewpoint specification" projektet kell létrehozni, majd ezen belül egy "odesign" kiterjesztésű fájlt. Ebben a fájlban be kell állítani milyen modellel szeretnénk dolgozni és azután lehet a modellhez tartozó editor működését és megjelenését definiálni. Ki lehet választani milyen típusú reprezentációt szeretnék a modellemnek, például: diagram, táblázat, fastruktúra. Meg lehet adni hogy a modellben lévő elemek vizuálisan hogyan jelenjenek meg. Ez a stílus akár dinamikusan változhat az elem tulajdonságától függően. Ebben a fájlban lehet pontosan megadni, hogy mi történjen egy elem létrehozásánál, törlésénél vagy módosításánál. Ezen események bekövetkezése kiválthatnak további eseményeket, ezáltal láncba fűzhetők. Például kitörlök egy elemet és ennek következtében módosítok egy másikat. A Sirius-szal lehet elágazásokat definiálni (switch-case, if) és iterációt is támogat (for ciklus). Sirius képes külső Java kód futtatására, amivel bővíthető a szerkesztőfelület funkcionalitása.
+Ez egy szintén Eclipse-be épülő keretrendszer \cite{Sirius}. Ez lehetővé teszi hogy EMF modellekhez vizuális megjelenítő és szerkesztő felületet készítsünk. Lehetőség van új objektumok létrehozására szerkesztésére és biztosít validációs lehetőségeket is. Az egyes elemek módosítását megszorításokhoz lehet kötni. A szerkesztő elkészítéséhez egy "viewpoint specification" projektet kell létrehozni, majd ezen belül egy "odesign" kiterjesztésű fájlt. A fájl definiálja a szerkesztő működését, amiben a következőket műveletek végezhetők:
+\begin{itemize}  
+	\item Be lehet állítani milyen modellt kezeljen.
+	\item Reprezentáció típusa is megadható. Például: diagram, táblázat, fastruktúra.
+	\item Modellelemek stílusa, megjelenése. Például: szín, forma.
+	\item Mi történjen egy elem módosításánál, törlésénél, vagy létrehozásánál.
+	\item Lehet külső java kódot futtatni benne.
+	\item Az egyes funkciókat előfeltételeit Aql kifejezésekkel lehet leírni. Aql az Annotation Query Language \cite{Aql} rövidítése. Lambda \cite{Lambda} kifejezésekhez hasonlóan lehet alkalmazni. 
+	
+\end{itemize}
 
-\subsection{Java}
-Objektumorientált programozási nyelv. EMF keretrendszer lehetőséget biztosít arra, hogy az elkészített modellből Java kód generálható. Az EMF modellből kigenerált kódot futtatva egy új Eclipse alkalmazás indítható, melyben már lehetőség van a metamodellben definiált modell példányosítására. 
 
-\subsection{Aql}
+%Ebben a fájlban be kell állítani milyen modellel szeretnénk dolgozni és azután lehet a modellhez tartozó editor működését és megjelenését definiálni. Ki lehet választani milyen típusú reprezentációt szeretnék a modellemnek, például: diagram, táblázat, fastruktúra. Meg lehet adni hogy a modellben lévő elemek vizuálisan hogyan jelenjenek meg. Ez a stílus akár dinamikusan változhat az elem tulajdonságától függően. Ebben a fájlban lehet pontosan megadni, hogy mi történjen egy elem létrehozásánál, törlésénél vagy módosításánál. Ezen események bekövetkezése kiválthatnak további eseményeket, ezáltal láncba fűzhetők. Például kitörlök egy elemet és ennek következtében módosítok egy másikat. A Sirius-szal lehet elágazásokat definiálni (switch-case, if) és iterációt is támogat (for ciklus). Sirius képes külső Java kód futtatására, amivel bővíthető a szerkesztőfelület funkcionalitása.
+
+%\subsection{Aql}
 \nocite{Acceleo}
 \nocite{OCL}
-Az Annotation Query Language \cite{Aql} rövidítése. Lambda \cite{Lambda} kifejezésekhez hasonlóan lehet alkalmazni. 
+%Az Annotation Query Language \cite{Aql} rövidítése. Lambda \cite{Lambda} kifejezésekhez hasonlóan lehet alkalmazni. 
 %A lambda kifejezés egy névtelen függvény, ami 
-Az editor elkészítésébe van nagy szerepe. Az egyes funkciókat előfeltételeit lehet leírni ezen a nyelven. 
+%Az editor elkészítésében van nagy szerepe. Az egyes funkciókat előfeltételeit lehet leírni ezen a nyelven. 
 
 %\section{Metamodell szerkezete}
 
 \section{Általános modell}
 
-\subsection{Jellemzés}
 Egy általános modell elemekből áll, amik tulajdonságokkal rendelkeznek, az elemek között pedig kapcsolatok vannak. Tehát olyan meta modellt kell készíteni, ami mindezeket magába foglalja. A metamodell elkészítéséhez EMF-et használtam (lásd \autoref{model}).
 
 \begin{figure}[!ht]
@@ -51,19 +59,20 @@ Egy általános modell elemekből áll, amik tulajdonságokkal rendelkeznek, az 
 \end{figure}
 
 \subsection{PSObject}
-A modellben a PSObject-ek reprezentálják az általános modell elemeit. Ez bármilyen típusú lehet. Rendelkezik névvel (name), referált osztállyal (ReferredEClass) és a referált osztály konkrét példányának az azonosítójával (uri). így a PSObject-en keresztül tudunk részlegességet rendelni a hivatkozott objektumhoz, ami erre egyébként nem lenne képes. PSObjectek tartalmaznak tetszőleges mennyiségű referenciát másik objektumokra (PSReferenceToObject) és attribútumokra (PSReferenceToAttribute).
+A modellben a PSObject-ek reprezentálják az általános modell elemeit. Rendelkezik névvel (name), ami egy 'EString' és referált osztállyal (ReferredEClass) aminek típusa 'EClass'. a referált osztály mutatja meg, hogy az objektum milyen típusú. %A PSObject-hez lehet részlegességeket rendelni, ennek a neve PSType. így a PSObject-en keresztül tudunk részlegességet rendelni a hivatkozott objektumhoz, ami erre egyébként nem lenne képes. 
+PSObjectek tartalmaznak tetszőleges mennyiségű referenciát másik objektumokra (PSReferenceToObject) és attribútumokra (PSReferenceToAttribute).
 
 \subsection{PSReference}
- Az elemek közötti kapcsolatokat reprezentálják. Fontos, hogy ezek is külön elemként jelenjenek meg a modellben, hisz ehhez is szeretnénk majd részlegességet társítani annotációk formájában. A PSReference egy absztrakt objektum két leszármazottja van a  PSReferenceToAttribute és PSReferenceToObject. Erre azért volt szükség mert későbbiekben a szerkesztő elkészítésénél más funkcionalitások vonatkoznak rájuk és logikailag is kifejezi, hogy az attribútum valamelyik objektum része és csak azzal együtt érvényes, míg egy objektum önmagában is értelmezhető. Rendelkezik névvel (name), referált osztállyal (ReferredEClass) és típussal (type). Van neki forrásobjektuma (sourceObject) és célobjektuma (targetObject) vagy célattribútuma (targetAttribute).
+ Az elemek közötti kapcsolatokat reprezentálják. Fontos, hogy ezek is külön elemként jelenjenek meg a modellben, hisz ehhez is szeretnénk majd részlegességet társítani annotációk formájában. A PSReference egy absztrakt objektum két leszármazottja van a  PSReferenceToAttribute és PSReferenceToObject. Erre azért volt szükség mert logikailag kifejezi azt, hogy az attribútum valamelyik objektum része és csak azzal együtt érvényes, míg egy objektum önmagában is értelmezhető. Rendelkezik névvel (name) és egy 'ERefference' típusú attribútummal (ReferredERef). 'ReferredERef' segítségével adható meg a referencia típusa. Van neki forrásobjektuma (sourceObject) és célobjektuma (targetObject) vagy célattribútuma (targetAttribute).
 
 \subsection{PSAttribute}
-Az objektumok tulajdonságai külön egy PSAttribute nevű elemben vannak hozzárendelve az objektumokhoz, így lehetőség van az attribútumokhoz is részlegességet rendelni. Lehetséges továbbá az is hogy egy attribútum több objektumhoz is tartozzon, ugyanis az attribútumokat nem közvetlenül a PSObjeckt-ek tárolják hanem csak hivatkoznak rájuk. Azonban az attribútumok tárolják a rájuk mutató PSReference-ek referenciáit. PSAttribute is absztrakt ezért több fajtája lehet:
+Az objektumok tulajdonságai külön egy PSAttribute nevű elemben vannak hozzárendelve az objektumokhoz, így lehetőség van az attribútumokhoz is részlegességet rendelni. Lehetséges továbbá az is hogy egy attribútum több objektumhoz is tartozzon, ugyanis az attribútumokat nem közvetlenül a PSObjeckt-ek tárolják hanem csak hivatkoznak rájuk. Azonban az attribútumok tárolják a rájuk mutató PSReference-ek referenciáit. PSAttribute absztrakt ezért több fajtája lehet.
 
 \begin{itemize}  
-	\item PSString
-	\item PSBoolean
-	\item PSInteger
-	\item PSOtherAttribute 
+	\item PSString: 'String' típusú attribútumot reprezentál. Értéke 'String' típusú lehet csak.
+	\item PSBoolean: 'Boolean' típusú attribútumot reprezentál. Értéke kizárólag 'Boolean' lehet.
+	\item PSInteger: 'Integer' típusú attribútumot reprezentál. Értéke csak 'Int' típusú lehet.
+	\item PSOtherAttribute : Tartalmaz egy 'EAttribute'-ra mutató referenciát. (refferedEAttribute). Tetszőleges egyéb attribútumot referálhat.
 \end{itemize}
 
 
@@ -73,12 +82,12 @@ Az objektumok tulajdonságai külön egy PSAttribute nevű elemben vannak hozzá
 Az \textit{OW} részlegességet a modell gyökerében egy boolean változóval tudjuk szemléltetni.
 
 \subsection{PSType}
-Minden egyes modellbeli elemhez tudnunk kell társítani annotációkat. Ezt a PSType-al tehetjük meg (lásd \autoref{partialmodel}), amiből leszármaznak a már említett részlegesség fajták (\textit{May}, \textit{Var}, \textit{Abs}):
+Minden egyes modellbeli elemhez tudnunk kell társítani annotációkat. Ezt a PSType-al tehetjük meg (lásd \autoref{partialmodel}). Ilyen PSType elemet tartalmazhat az attribútum a referencia és az objektum is. Egy időben több fajta részlegesség is lehet egy elemen. Részlegességek szerint három leszármazottja van a PSType-nak:
 
 \begin{itemize}  
-	\item MayType
-	\item AbsType
-	\item VarType 
+	\item MayType: \textit{May} részlegességet jelöl, azon az elemen amelyik tartalmazza. 
+	\item AbsType: \textit{Abs} részlegességet jelöl, azon az elemen amelyik tartalmazza.
+	\item VarType: \textit{Var} részlegességet jelöl, azon az elemen amelyik tartalmazza.
 \end{itemize}
 
 \begin{figure}[!ht]
@@ -89,7 +98,7 @@ Minden egyes modellbeli elemhez tudnunk kell társítani annotációkat. Ezt a P
 \end{figure}
 
 \section{Szerkesztő}
-\subsection{Példánymodell felülete}
+\subsection{Példánymodell szerkesztőfelülete}
 \subsubsection{PSObject}
 Világoszöld téglalapként jelenik meg (lásd \autoref{obj}).  A téglalap fejrészében megjelenik az objektum neve.
 \begin{figure}[!ht]
@@ -103,10 +112,7 @@ Funkciók:
 \begin{itemize}  	
 	\item Bal felső sarkában pedig egy kis '+' jel segítségével megjeleníthetjük a hozzá tartozó attribútumokat. Amennyiben ezek láthatóak akkor egy '-' jel jelenik meg amivel elrejthetjük. 	
 	
-	\item PSObject létrehozása a szerkesztőfelület oldalán lévő sávból kiválasztva lehetséges. Az Object nevet kiválasztva, majd a szerkesztőfelületre kattintva megjelenik a négyzet egy alapértelmezett névvel. A név formátuma: 'Object\{szám\}'. A szám helyén egy automatikusan generált szám kerül, a már meglévő PSObject-ek száma növelve eggyel. Ezt aql kifejezéssel lehet megtenni: 
-	\begin{align}
-	aql:'object'+container.objects->size()
-	\end{align}	
+	\item PSObject létrehozása az eszköztárból kiválasztva lehetséges, majd a szerkesztőfelületre kattintva megjelenik egy négyzet egy alapértelmezett névvel. A név formátuma: 'Object\{szám\}'. A szám helyén egy automatikusan generált szám kerül, a már meglévő PSObject-ek száma növelve eggyel.
 
 	\item Az objektum nevére rákattintva az közvetlenül szerkeszthetővé válik. A többi tulajdonság a Sirius által alapból biztosított 'Properties' fülön érhető el. 
 	
@@ -115,11 +121,11 @@ Funkciók:
 
 
 \subsubsection{PSReference}
-A felületen szürke vonalként jelenik meg. Összeköthet PSObject-et attribútummal vagy egy másik PSObject-el. Utóbbi esetben a vonal végén nyíl is van. A referencián szövegesen megjelenik neve és zárójelben a hozzá tartozó részlegességek is. Amennyiben rákattintunk a referenciára kétszer megjelenik egy másik szerkesztőfelület, ahol a referencia egy narancssárga téglalapként jelenik meg (lásd \autoref{ref}).
+A felületen szürke vonalként jelenik meg. Összeköthet PSObject-et attribútummal vagy egy másik PSObject-el. Utóbbi esetben a vonal végén nyíl is van. A referencián szövegesen megjelenik neve és zárójelben a hozzá tartozó részlegességek is. Amennyiben rákattintunk a referencia vonalára kétszer, akkor egy új ablak jelenik meg. Ebben az ablakban egy narancssárga négyzeten a referencia neve van. Ez azért fontos mert itt tudunk hozzáadni részlegességeket a referenciához a későbbiekben (lásd \autoref{ref}).
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{figures/ref.PNG}
-	\caption{PSReference (baloldalt a részleges modellen megjelenő formában, jobb oldalon a rákattintás utáni nézet látható)}
+	\caption{PSReference (baloldalt a részleges modellen megjelenő formában vonalként, jobb oldalon a rákattintás utáni nézet látható)}
 	\label{ref} 
 \end{figure}
 \\\\
@@ -127,19 +133,19 @@ Funkciók:
 \begin{itemize}  	
 	\item Kétszer rákattintva egy referenciára megjelenik egy új szerkesztőfelület. Itt csak egy narancssárga téglalap van a referencia nevével. Erre a nézetre azért van szükség, mert részlegességek így könnyebben kezelhetők. A részlegességek magyarázatánál bővebben lesz erről szó.
 	
-	\item Létrehozása a szerkesztőfelület oldalán lévő sávból kiválasztva lehetséges (reference). Aztán egy PSObject-re kattintva a kezdőpontja, majd második kattintásra a cél objektuma vagy attribútuma jelölhető ki a referenciának. A kiválasztó felületen nincs külön referencia objektumra és attribútumra, ez a felhasználó számára rejtve marad, azonban a háttérben mégis külön kezelődik. Referencia létrehozásának a logikájában van egy elágazás (switch), ami vizsgálja, hogy a célobjektum, tehát amire másodjára kattintunk az milyen típusú. A referencia típusát aql kifejezéssel lehet eldönteni (lásd \autoref{refcreation}). A referencia nevét hasonlóan a PSObject-hez aql segítségével generálja: 'attr\{szám\}' vagy 'ref\{szám\}'. Itt a 'szám' a forrás objektumból kiinduló attribútumokra vagy objektumokra mutató referenciák számát veszi figyelembe. Attribútumra mutató referencia esetében kicsit különbözik a működés. Amennyiben a referált attribútumra már mutat másik referencia, akkor az új referenciához automatikusan hozzá generálunk egy May részlegességet. Ennek az az értelme, hogy gyakorlatban nem fordulhat elő olyan, hogy egy attribútum több objektumhoz is tartozik.
+	\item Létrehozása a szerkesztőfelület oldalán lévő sávból kiválasztva lehetséges (reference). Aztán egy PSObject-re kattintva a kezdőpontja, majd második kattintásra a cél objektuma vagy attribútuma jelölhető ki a referenciának. A kiválasztó felületen nincs külön referencia objektumra és attribútumra, ez a felhasználó számára rejtve marad, azonban a háttérben mégis külön kezelődik. Referencia létrehozásának a logikájában van egy elágazás (switch), ami vizsgálja, hogy a célobjektum, tehát amire másodjára kattintunk az milyen típusú. A referencia típusát aql kifejezéssel lehet eldönteni. A referencia nevét hasonlóan a PSObject-hez aql segítségével generálja: 'attr\{szám\}' vagy 'ref\{szám\}'. Itt a 'szám' a forrás objektumból kiinduló attribútumokra vagy objektumokra mutató referenciák számát veszi figyelembe. Attribútumra mutató referencia esetében kicsit különbözik a működés. Amennyiben a referált attribútumra már mutat másik referencia, akkor az új referenciához automatikusan hozzá generálunk egy May részlegességet. Ennek az az értelme, hogy gyakorlatban nem fordulhat elő olyan, hogy egy attribútum több objektumhoz is tartozik.
 	
 	\item Éleket át lehet huzalozni, azaz másik célelemet lehet választani nekik. PSObject-re mutató élt nem lehet megváltoztatni PSAttribute-ra mutató élre és fordítva se. Új cél kiválasztása esetén a régi felülíródik. Attribútum esetében a régi attribútumból törlődik az él referenciája és az új attribútumba íródik be. Ha attribútumról olyan attribútumra húzzuk át az élet, amibe már vezet él akkor ahhoz  automatikusan hozzá generálódik egy 'May' részlegesség, mint ahogy az új él létrehozásnál is történt.
 	
-	\item Törlés esetén nem szükséges plusz logikát beiktatni. Sirius  beépítetten kezeli.
+	\item Törlés esetén az objektum és a hozzá tartozó referenciák törlődnek.
 \end{itemize}
 
-\begin{figure}[!htp]
-	\centering
-	\includegraphics[width=100mm]{figures/refcreation.PNG}
-	\caption{Referencia létrehozásának logikája}
-	\label{refcreation} 
-\end{figure}
+%\begin{figure}[!htp]
+%	\centering
+%	\includegraphics[width=100mm]{figures/refcreation.PNG}
+%	\caption{Referencia létrehozásának logikája}
+%	\label{refcreation} 
+%\end{figure}
 
 \subsubsection{PSAttribute}
 Szürke téglalapként jelenik meg a szerkesztőfelületen (lásd \autoref{attr}). Az attribútum típusa és értéke a téglalap közepén látható kettősponttal elválasztva.
@@ -152,7 +158,7 @@ Szürke téglalapként jelenik meg a szerkesztőfelületen (lásd \autoref{attr}
 \\\\
 Funkciók:
 \begin{itemize}  	
-	\item Létrehozása a szerkesztőfelület oldalán lévő sávból kiválasztva lehetséges (UndefinedAttribute). Ezután a szerkesztő panelen kattintva létrejön egy attribútum. Ez nem tartozik még egyetlen objektumhoz sem.
+	\item Létrehozása az eszköztárról kiválasztva lehetséges, ezután a szerkesztő panelen kattintva létrejön egy attribútum. Ez nem tartozik még egyetlen objektumhoz sem.
 	
 	\item A típusának és értékének szerkesztése lehetséges a Sirius által biztosított 'Properties' fülön.
 	
@@ -173,18 +179,18 @@ A szerkesztőfelületen világoszöld téglalapként jelenik meg az elem mellett
 \begin{itemize}  	
 	\item Létrehozása a szerkesztőfelület oldalán lévő sávból kiválasztva lehetséges (May, Abs, Var), utána arra az elemre kattintva amelyikhez a részlegességet hozzá akarom rendelni létrejön a PSType. Él esetében ugyan ez a referencia saját szerkesztőfelületén lehetséges.
 	
-	\item Törlés esetén nem szükséges plusz logikát beiktatni. Sirius  beépítetten kezeli.	
+	\item Törlés esetén eltávolítja magát az objektumból.
 \end{itemize}
 
 \subsection{Finomítás}
 Duplán kattintva a PSType-ra történik meg a feloldása a részlegességnek. A PSType-nak három fajtája van, amik különböző módokon viselkednek attól függően, hogy milyen típusú elemre vannak rátéve, ezért ezeket külön tárgyalom. 
 
 \subsubsection{PSObject May feloldása}
-Feloldásnál az objektum és az összes hozzátartozó attribútum törlődik. Ezt úgy oldottam meg, hogy végigiterál az összes élen ami attribútumra mutat és törli azokat. Amennyiben az attribútumra mutat más objektumból is referencia akkor az nem törlődik (lásd \autoref{objmay}).
-Aql feltétel, ami azt vizsgálja, hogy nem vezet-e más objektumból él az attribútumba:
-\begin{align}
- aql:ref.targetAttribute.references->forAll(x | x.sourceObject = element.eContainer())
-\end{align}
+Feloldásnál az objektum kitörli a belőle kivezető éleket, majd az összes más objektumból rá mutató élet. Kitörli az attribútumra mutató éleket is és amennyiben az adott attribútumra nem vezet más objektumból él akkor az is törlődik (lásd \autoref{objmay}). Ezután maga az objektum is törlődik.
+%Aql feltétel, ami azt vizsgálja, hogy nem vezet-e más objektumból él az attribútumba:
+%\begin{align}
+% aql:ref.targetAttribute.references->forAll(x | x.sourceObject = element.eContainer())
+%\end{align}
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=100mm]{figures/objmay.pdf}
@@ -205,7 +211,7 @@ Aql feltétel, ami azt vizsgálja, hogy nem vezet-e más objektumból él az att
 Kitörli a referenciát a forrásobjektumból.
 
 \subsubsection{PSReferenceToAttribute May feloldása}
-Az él törlődik, de eltérően az PSObject-ekre mutató referenciától, amennyiben a célattribútumba nem vezet másik él, akkor az attribútum is megszűnik. A finomítás lényege, hogy általa csökken a részlegessége a modellnek. Ezért nem lenne értelme az üresen maradt attribútumot meghagyni, ami nem kötődik semmilyen objektumhoz, mert nem csökkent volna a modell részlegessége (lásd \autoref{refmay}).
+Az él törlődik, de eltérően az PSObject-ekre mutató élektől, amennyiben a célattribútumba nem vezet másik él, akkor az attribútum is megszűnik. A finomítás lényege, hogy általa csökken a részlegessége a modellnek. Azért nem lenne értelme az üresen maradt attribútumot meghagyni, ami nem kötődik semmilyen objektumhoz, mert nem csökkent volna a modell részlegessége (lásd \autoref{refmay}).
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=100mm]{figures/refmay.pdf}
@@ -214,7 +220,7 @@ Az él törlődik, de eltérően az PSObject-ekre mutató referenciától, amenn
 \end{figure}
 
 \subsubsection{PSObject Set feloldása}
-Létrejön egy új objektum, aminek ugyanazok a tulajdonságai, mint az eredeti objektumnak, amin a 'Set' annotáció volt. Az új PSObject referenciái ugyan azokra az objektumokra mutatnak, mint az eredeti PSObject-nél. Új attribútumok jönnek létre az eredeti objektumhoz tartozó attribútumok mintájára és ezek lesznek az új elem attribútumai. Az új élek nevei ugyan azok mint az eredetié de a végére kerül egy kis 'v' betű (lásd \autoref{objset}).
+Létrejön egy új objektum, aminek ugyanazok a tulajdonságai, mint az eredeti objektumnak, amin a 'Set' annotáció volt. Az új PSObject referenciái ugyan azokra az objektumokra mutatnak, mint az eredeti PSObject esetében. Új attribútumok jönnek létre az eredeti objektumhoz tartozó attribútumok mintájára és ezek lesznek összekötve az új PSObject-el. Az új élek nevei ugyan azok mint az eredeti esetben, de a végére kerül egy kis 'v' betű (lásd \autoref{objset}).
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=100mm]{figures/objset.pdf}
@@ -223,7 +229,7 @@ Létrejön egy új objektum, aminek ugyanazok a tulajdonságai, mint az eredeti 
 \end{figure}
 
 \subsubsection{PSAttribute Set feloldása}
-Létrejön egy új attribútum és ugyan ahhoz az PSObject-hez fog tartozni mint az eredeti. Tehát az objektumból él fog vezetni az attribútumba. A típusát és értékét is megörökli az eredeti attribútumnak. Új elemhez tartozó referenciák nevei után egy kis 'v' betű kerül (lásd \autoref{attrset}).
+Létrejön egy új attribútum és ugyan ahhoz az PSObject-hez fog tartozni mint az eredeti,  tehát az objektumból él fog vezetni az attribútumba. A típusát és értékét is megörökli az eredeti attribútumnak. Új elemhez tartozó referenciák nevei után egy kis 'v' betű kerül (lásd \autoref{attrset}).
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=100mm]{figures/attrset.pdf}
@@ -244,11 +250,11 @@ Az eredeti referencia forrásobjektumában létrehoz egy újat, ami ugyan arra a
 \end{figure}
 
 \subsubsection{Var részlegességről általában}
-Eredeti objektumnak, elemnek nevezzük azt az PSObject-et amelyiknek a 'Var' részlegességére duplán kattintottunk. A 'Var' részlegességnek van egy id-ja, ami segítségével meg lehet jelölni, hogy melyik 'Var' részlegességek tartoznak egybe, erre a későbbiekben 'Var id'-val hivatkozom.
+Eredeti objektumnak, elemnek nevezem a továbbiakban azt a PSObject-et amelyiknél a 'Var' részlegességére duplán kattintottunk. A 'Var' részlegességnek van egy id-ja, ami segítségével meg lehet jelölni, hogy melyik 'Var' részlegességek tartoznak egybe, erre a későbbiekben 'Var id'-val hivatkozom.
 
 
 \subsubsection{PSObject Var feloldása}
- Az összes olyan objektumnak, amelyiknek megegyezik a 'Var id'-ja az törlődik, kivéve az eredeti de előtte az összes hozzá tartozó referencia mintájára létrejönnek az eredeti objektumban élek. Azok az objektumok élei amikből eddig egy törölt objektumba mutattak, azok most az eredeti objektumra fognak mutatni (lásd \autoref{objvar}).
+ Az összes olyan objektumnak, amelyiknek megegyezik a 'Var id'-ja az törlődik, kivéve az eredeti de előtte az összes hozzá tartozó referencia mintájára létrejönnek az eredeti objektumban élek. Azok az objektumok élei, amik eddig egy törölt objektumba mutattak, azok most az eredeti objektumra fognak mutatni (lásd \autoref{objvar}).
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=110mm]{figures/objvar.pdf}
