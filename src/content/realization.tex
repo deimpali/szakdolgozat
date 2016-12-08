@@ -7,7 +7,7 @@ A feladatot Eclipse-be \cite{Eclipse} integrált tervezőeszközként valósíto
 \subsection{Metamodell}
 A metamodell összefoglalja egy modellezési nyelv legfőbb fogalmait, relációit és alapvető struktúráját. Egy olyan alapséma, amire illeszkedik az összes hozzá tartozó alacsonyabb absztrakciós szinttel rendelkező modell. 
 Tegyük fel hogy M* modell M1 modellnek a metamodellje.
-Akkor M* metamodell meghatározza az M1 modellben lévő elemeket, attribútumokat és ezeknek lehetséges kapcsolatait. Például az alábbi modelleknek (lásd \autoref{jarmupeldany}) a már korábban említett jármű modell tekinthető metamodelljének. Bal oldalon egy motor példánymodellje, jobb oldalon pedig egy biciklinek a modellje látható.
+Akkor M* metamodell meghatározza az M1 modellben lévő elemeket, attribútumokat és ezeknek lehetséges kapcsolatait. Például az alábbi modelleknek (lásd \autoref{jarmupeldany}) a már korábban említett jármű modell tekinthető metamodelljének. Bal oldalon egy motor példánymodellje, jobb oldalon pedig egy biciklinek a modellje látható. Az általam elkészített metamodell a parciális modellek számára attól általános, hogy nem csupán az osztálydiagram metamodellje lehet, hanem ugyan úgy lehet a jármű metamodellje is. 
 
 \begin{figure}[!ht]
 	\centering
@@ -24,14 +24,14 @@ EMF az Eclipse Modelling Framework \cite{EMF} rövidítése. Ez egy olyan keretr
 \nocite{SiruisTutNagyASz}
 \nocite{SiruisTutStart}
 \nocite{SiruisTutAdv}
-Ez egy szintén Eclipse-be épülő keretrendszer \cite{Sirius}. Ez lehetővé teszi hogy EMF modellekhez vizuális megjelenítő és szerkesztő felületet készítsünk. Lehetőség van új objektumok létrehozására szerkesztésére és biztosít validációs lehetőségeket is. Az egyes elemek módosítását megszorításokhoz lehet kötni. A szerkesztő elkészítéséhez egy "viewpoint specification" projektet kell létrehozni, majd ezen belül egy "odesign" kiterjesztésű fájlt. A fájl definiálja a szerkesztő működését, amiben a következőket műveletek végezhetők:
+Ez egy szintén Eclipse-be épülő keretrendszer \cite{Sirius}. Ez lehetővé teszi hogy EMF modellekhez vizuális megjelenítő és szerkesztő felületet készítsünk. Lehetőség van új objektumok létrehozására, törlésére és szerkesztésére. Az egyes elemek módosítását megszorításokhoz lehet kötni. A szerkesztő elkészítéséhez egy "viewpoint specification" projektet kell létrehozni, majd ezen belül egy "odesign" kiterjesztésű fájlt. A fájl definiálja a szerkesztő működését, amiben a következőket műveletek végezhetők:
 \begin{itemize}  
 	\item Be lehet állítani milyen modellt kezeljen.
 	\item Reprezentáció típusa is megadható. Például: diagram, táblázat, fastruktúra.
 	\item Modellelemek stílusa, megjelenése. Például: szín, forma.
 	\item Mi történjen egy elem módosításánál, törlésénél, vagy létrehozásánál.
 	\item Lehet külső java kódot futtatni benne.
-	\item Az egyes funkciókat előfeltételeit Aql kifejezésekkel lehet leírni. Aql az Annotation Query Language \cite{Aql} rövidítése. Lambda \cite{Lambda} kifejezésekhez hasonlóan lehet alkalmazni. 
+	\item Az egyes funkciók működését Aql kifejezésekkel lehet leírni. Aql az Annotation Query Language \cite{Aql} rövidítése. Lambda \cite{Lambda} kifejezésekhez hasonlóan lehet alkalmazni. 
 	
 \end{itemize}
 
@@ -58,14 +58,14 @@ Egy általános modell elemekből áll, amik tulajdonságokkal rendelkeznek, az 
 	\label{model}
 \end{figure}
 
-\subsection{PSObject}
+\subsection{Objektum (PSObject)}
 A modellben a PSObject-ek reprezentálják az általános modell elemeit. Rendelkezik névvel (name), ami egy 'EString' és referált osztállyal (ReferredEClass) aminek típusa 'EClass'. a referált osztály mutatja meg, hogy az objektum milyen típusú. %A PSObject-hez lehet részlegességeket rendelni, ennek a neve PSType. így a PSObject-en keresztül tudunk részlegességet rendelni a hivatkozott objektumhoz, ami erre egyébként nem lenne képes. 
 PSObjectek tartalmaznak tetszőleges mennyiségű referenciát másik objektumokra (PSReferenceToObject) és attribútumokra (PSReferenceToAttribute).
 
-\subsection{PSReference}
+\subsection{Referencia (PSReference)}
  Az elemek közötti kapcsolatokat reprezentálják. Fontos, hogy ezek is külön elemként jelenjenek meg a modellben, hisz ehhez is szeretnénk majd részlegességet társítani annotációk formájában. A PSReference egy absztrakt objektum két leszármazottja van a  PSReferenceToAttribute és PSReferenceToObject. Erre azért volt szükség mert logikailag kifejezi azt, hogy az attribútum valamelyik objektum része és csak azzal együtt érvényes, míg egy objektum önmagában is értelmezhető. Rendelkezik névvel (name) és egy 'ERefference' típusú attribútummal (ReferredERef). 'ReferredERef' segítségével adható meg a referencia típusa. Van neki forrásobjektuma (sourceObject) és célobjektuma (targetObject) vagy célattribútuma (targetAttribute).
 
-\subsection{PSAttribute}
+\subsection{Attribútum (PSAttribute)}
 Az objektumok tulajdonságai külön egy PSAttribute nevű elemben vannak hozzárendelve az objektumokhoz, így lehetőség van az attribútumokhoz is részlegességet rendelni. Lehetséges továbbá az is hogy egy attribútum több objektumhoz is tartozzon, ugyanis az attribútumokat nem közvetlenül a PSObjeckt-ek tárolják hanem csak hivatkoznak rájuk. Azonban az attribútumok tárolják a rájuk mutató PSReference-ek referenciáit. PSAttribute absztrakt ezért több fajtája lehet.
 
 \begin{itemize}  
@@ -81,7 +81,7 @@ Az objektumok tulajdonságai külön egy PSAttribute nevű elemben vannak hozzá
 \subsection{OW részlegesség}
 Az \textit{OW} részlegességet a modell gyökerében egy boolean változóval tudjuk szemléltetni.
 
-\subsection{PSType}
+\subsection{Részlegesség típusa (PSType)}
 Minden egyes modellbeli elemhez tudnunk kell társítani annotációkat. Ezt a PSType-al tehetjük meg (lásd \autoref{partialmodel}). Ilyen PSType elemet tartalmazhat az attribútum a referencia és az objektum is. Egy időben több fajta részlegesség is lehet egy elemen. Részlegességek szerint három leszármazottja van a PSType-nak:
 
 \begin{itemize}  
@@ -99,7 +99,7 @@ Minden egyes modellbeli elemhez tudnunk kell társítani annotációkat. Ezt a P
 
 \section{Szerkesztő}
 \subsection{Példánymodell szerkesztőfelülete}
-\subsubsection{PSObject}
+\subsubsection{Objektum (PSObject)}
 Világoszöld téglalapként jelenik meg (lásd \autoref{obj}).  A téglalap fejrészében megjelenik az objektum neve.
 \begin{figure}[!ht]
 	\centering
@@ -120,7 +120,7 @@ Funkciók:
 \end{itemize}
 
 
-\subsubsection{PSReference}
+\subsubsection{Referencia (PSReference)}
 A felületen szürke vonalként jelenik meg. Összeköthet PSObject-et attribútummal vagy egy másik PSObject-el. Utóbbi esetben a vonal végén nyíl is van. A referencián szövegesen megjelenik neve és zárójelben a hozzá tartozó részlegességek is. Amennyiben rákattintunk a referencia vonalára kétszer, akkor egy új ablak jelenik meg. Ebben az ablakban egy narancssárga négyzeten a referencia neve van. Ez azért fontos mert itt tudunk hozzáadni részlegességeket a referenciához a későbbiekben (lásd \autoref{ref}).
 \begin{figure}[!ht]
 	\centering
@@ -147,7 +147,7 @@ Funkciók:
 %	\label{refcreation} 
 %\end{figure}
 
-\subsubsection{PSAttribute}
+\subsubsection{Attribútum (PSAttribute)}
 Szürke téglalapként jelenik meg a szerkesztőfelületen (lásd \autoref{attr}). Az attribútum típusa és értéke a téglalap közepén látható kettősponttal elválasztva.
 \begin{figure}[!ht]
 	\centering
@@ -166,7 +166,7 @@ Funkciók:
 
 \end{itemize}
 
-\subsubsection{PSType}
+\subsubsection{Részlegesség típusa (PSType)}
 A szerkesztőfelületen világoszöld téglalapként jelenik meg az elem mellett, amihez hozzá lett rendelve (lásd \autoref{part}). Referencia esetén zárójelben látszik az él neve előtt, de ha kétszer rákattintunk a referenciára, hogy megnyissuk a szerkesztőfelületét, ott az élet reprezentáló narancssárga téglalap mellett fog megjelenni (lásd \autoref{obj}).
 \begin{figure}[!ht]
 	\centering
@@ -185,7 +185,7 @@ A szerkesztőfelületen világoszöld téglalapként jelenik meg az elem mellett
 \subsection{Finomítás}
 Duplán kattintva a PSType-ra történik meg a feloldása a részlegességnek. A PSType-nak három fajtája van, amik különböző módokon viselkednek attól függően, hogy milyen típusú elemre vannak rátéve, ezért ezeket külön tárgyalom. 
 
-\subsubsection{PSObject May feloldása}
+\subsubsection{PSObject-May részlegesség feloldása}
 Feloldásnál az objektum kitörli a belőle kivezető éleket, majd az összes más objektumból rá mutató élet. Kitörli az attribútumra mutató éleket is és amennyiben az adott attribútumra nem vezet más objektumból él akkor az is törlődik (lásd \autoref{objmay}). Ezután maga az objektum is törlődik.
 %Aql feltétel, ami azt vizsgálja, hogy nem vezet-e más objektumból él az attribútumba:
 %\begin{align}
@@ -198,7 +198,7 @@ Feloldásnál az objektum kitörli a belőle kivezető éleket, majd az összes 
 	\label{objmay} 
 \end{figure}
 
-\subsubsection{PSAttribute May feloldása}
+\subsubsection{PSAttribute-May részlegesség feloldása}
 Élek nem törlődnek automatikusan mert a PSObject tartalmazza őket. Végig kell iterálni az összes attribútumra mutató élen és kitörölni azokat. Ezután kitörlődik az attribútum is (lásd \autoref{attrmay}). 
 \begin{figure}[!ht]
 	\centering
@@ -207,10 +207,10 @@ Feloldásnál az objektum kitörli a belőle kivezető éleket, majd az összes 
 	\label{attrmay} 
 \end{figure}
 
-\subsubsection{PSReferenceToObject May feloldása}
+\subsubsection{PSReferenceToObject-May részlegesség feloldása}
 Kitörli a referenciát a forrásobjektumból.
 
-\subsubsection{PSReferenceToAttribute May feloldása}
+\subsubsection{PSReferenceToAttribute-May részlegesség feloldása}
 Az él törlődik, de eltérően az PSObject-ekre mutató élektől, amennyiben a célattribútumba nem vezet másik él, akkor az attribútum is megszűnik. A finomítás lényege, hogy általa csökken a részlegessége a modellnek. Azért nem lenne értelme az üresen maradt attribútumot meghagyni, ami nem kötődik semmilyen objektumhoz, mert nem csökkent volna a modell részlegessége (lásd \autoref{refmay}).
 \begin{figure}[!ht]
 	\centering
@@ -219,7 +219,7 @@ Az él törlődik, de eltérően az PSObject-ekre mutató élektől, amennyiben 
 	\label{refmay} 
 \end{figure}
 
-\subsubsection{PSObject Set feloldása}
+\subsubsection{PSObject-Set részlegesség feloldása}
 Létrejön egy új objektum, aminek ugyanazok a tulajdonságai, mint az eredeti objektumnak, amin a 'Set' annotáció volt. Az új PSObject referenciái ugyan azokra az objektumokra mutatnak, mint az eredeti PSObject esetében. Új attribútumok jönnek létre az eredeti objektumhoz tartozó attribútumok mintájára és ezek lesznek összekötve az új PSObject-el. Az új élek nevei ugyan azok mint az eredeti esetben, de a végére kerül egy kis 'v' betű (lásd \autoref{objset}).
 \begin{figure}[!ht]
 	\centering
@@ -228,7 +228,7 @@ Létrejön egy új objektum, aminek ugyanazok a tulajdonságai, mint az eredeti 
 	\label{objset} 
 \end{figure}
 
-\subsubsection{PSAttribute Set feloldása}
+\subsubsection{PSAttribute-Set részlegesség feloldása}
 Létrejön egy új attribútum és ugyan ahhoz az PSObject-hez fog tartozni mint az eredeti,  tehát az objektumból él fog vezetni az attribútumba. A típusát és értékét is megörökli az eredeti attribútumnak. Új elemhez tartozó referenciák nevei után egy kis 'v' betű kerül (lásd \autoref{attrset}).
 \begin{figure}[!ht]
 	\centering
@@ -237,10 +237,10 @@ Létrejön egy új attribútum és ugyan ahhoz az PSObject-hez fog tartozni mint
 	\label{attrset} 
 \end{figure}
 
-\subsubsection{PSReferenceToObject Set feloldása}
+\subsubsection{PSReferenceToObject-Set részlegesség feloldása}
 Az eredeti referencia forrásobjektumában létrehoz egy újat, ami ugyan arra az objektumra mutat (lásd \autoref{refset}).
 
-\subsubsection{PSReferenceToAttribute Set feloldása}
+\subsubsection{PSReferenceToAttribute-Set részlegesség feloldása}
 Az eredeti referencia forrásobjektumában létrehoz egy újat, ami ugyan arra az attribútumra mutat, ezután a célattribútum referenciái közé is hozzáadjuk az új élet(lásd \autoref{refset}).
 \begin{figure}[!ht]
 	\centering
@@ -253,7 +253,7 @@ Az eredeti referencia forrásobjektumában létrehoz egy újat, ami ugyan arra a
 Eredeti objektumnak, elemnek nevezem a továbbiakban azt a PSObject-et amelyiknél a 'Var' részlegességére duplán kattintottunk. A 'Var' részlegességnek van egy id-ja, ami segítségével meg lehet jelölni, hogy melyik 'Var' részlegességek tartoznak egybe, erre a későbbiekben 'Var id'-val hivatkozom.
 
 
-\subsubsection{PSObject Var feloldása}
+\subsubsection{PSObject-Var részlegesség feloldása}
  Az összes olyan objektumnak, amelyiknek megegyezik a 'Var id'-ja az törlődik, kivéve az eredeti de előtte az összes hozzá tartozó referencia mintájára létrejönnek az eredeti objektumban élek. Azok az objektumok élei, amik eddig egy törölt objektumba mutattak, azok most az eredeti objektumra fognak mutatni (lásd \autoref{objvar}).
 \begin{figure}[!ht]
 	\centering
@@ -262,7 +262,7 @@ Eredeti objektumnak, elemnek nevezem a továbbiakban azt a PSObject-et amelyikn�
 	\label{objvar} 
 \end{figure}
 
-\subsubsection{PSAttribute Var feloldása}
+\subsubsection{PSAttribute-Var részlegesség feloldása}
 Az eredetin kívül az összes olyan attribútum kitörlődik, aminek a 'Var id'-ja megegyezik az eredeti elem 'Var id'-jával. A törölt elemekbe futó élek az eredeti elemre fognak ezentúl mutatni (lásd \autoref{attrvar}).
 \begin{figure}[!ht]
 	\centering
@@ -271,11 +271,11 @@ Az eredetin kívül az összes olyan attribútum kitörlődik, aminek a 'Var id'
 	\label{attrvar} 
 \end{figure}
 
-\subsubsection{PSReferenceToObject Var feloldása}
+\subsubsection{PSReferenceToObject-Var részlegesség feloldása}
 Csak az eredeti referencia forrásobjektumában keres vele megegyező 'Var id'-val rendelkező referenciát. Ezeket a referenciákat törli (lásd \autoref{refvar}).
 
 
-\subsubsection{PSReferenceToAttribute Var feloldása}
+\subsubsection{PSReferenceToAttribute-Var részlegesség feloldása}
 Hasonlóan a PSReferenceToObject esetéhez csak az eredeti referencia forrásobjektumában keres vele megegyező 'Var id'-val rendelkező referenciát. Ezeket a referenciákat törli (lásd \autoref{refvar}).
 
 \begin{figure}[!ht]
