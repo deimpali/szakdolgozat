@@ -30,19 +30,38 @@ Részleges modell lehetőséget biztosíthat arra is, hogy példányosítsunk ab
 Egy objektumdiagram esetében a multiplicitás korlátos. Tehát van vagy minimum vagy maximum megszorítás, akkor ezek nem hághatóak át. Tegyük fel, hogy egy 'A' objektum legfeljebb egy 'B' típusú objektumot tartalmazhat. 'B1' és 'B2' is 'B' típusú. Kezdetben nem tudjuk eldönteni még, hogy melyik objektum lesz a modellben akkor nincs lehetőségünk mindkettőt létrehozni, hogy majd később dönthessük el a sorsukat, hanem az egyiket mindenképp el kell hagyni. Részleges modell ennél megengedőbb és ha szükséges 'B1' és 'B2' objektum is kapcsolódhat 'A' objektumhoz.
 
 \section{Esettanulmány}
-A következő példában bemutatom, hogy egy parciális modellszerkesztő milyen lehetőségeket biztosít. Tételezzük fel, hogy egy már meglévő modellt 'M' szeretnénk parciális modellként kezelni. Ehhez az első lépés, hogy importáljuk a modellt. Ez azt jelenti, hogy minden egyes elemét (Objektum, attribútum, referencia) megfeleltetjük egy részleges modellbeli elemmel (lásd \autoref{import}). A következő ábra jól szemlélteti ezt. Az így kapott eredmény egy parciális modell, amit nevezzünk 'PM'-nek.
+A következő példában, ami egy autónak a modellje bemutatom, hogy egy parciális modellszerkesztő milyen lehetőségeket biztosít. Tételezzük fel, hogy egy már meglévő modellt 'M' szeretnénk parciális modellként kezelni. Ehhez az első lépés, hogy importáljuk a modellt. Ez azt jelenti, hogy minden egyes elemét (Objektum, attribútum, referencia) megfeleltetjük egy részleges modellbeli elemmel (lásd \autoref{import}). Az így kapott eredmény egy parciális modell, amit nevezzünk 'PM'-nek.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=100mm]{figures/pl01.pdf}
-	\caption{Osztálydiagram megfeleltetése parciális modellel} 
+	\caption{Osztálydiagram importálása parciális modellbe} 
 	\label{import}
 \end{figure}
 \par
-Következő lépésben módosíthatjuk a modellt. Például adhatunk hozzá új elemet(TODOÁBRA). A részleges modellbeli objektumban el van tárolva, hogy az milyen típusú így nem különbözik a már meglévő elemektől. Ez fontos lesz majd, ha vissza szeretnénk konvertálni nem parciális modell elemmé. Elemet törölni is lehet. Egyik objektum attribútumát eltávolíthatjuk például(TODOÁBRA).
+Következő lépésben módosíthatjuk a modellt. Például adhatunk hozzá új elemet. Autónak legyen egy ülése, amit összekötünk az autóval. Elemet törölni is lehet. Egyik objektum attribútumát eltávolíthatjuk, legyen ez az ajtónak a 'név' attribútuma. Módosítások után így néz ki a modell \autoref{pl02}.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=100mm]{figures/pl02.pdf}
+	\caption{Módosított modell} 
+	\label{pl02}
+\end{figure}
 \par
-Eddigi módosításokhoz még nem kellett a részleges modell lehetőségeit felhasználni, ezt az eredeti modellben is megtehettük volna. Most viszont egy attribútumot hozzáadunk a modellhez anélkül, hogy az bármelyik objektumhoz is kapcsolódna. (TODOÁBRA) Ezután ezt az attribútumot mivel még nem tudjuk  hova is tartozzon dönthetünk úgy hogy több objektumhoz is hozzákapcsoljuk. (TODOÁBRA)
-Jelen pillanatban akkor van egy attribútumunk, ami két különböző objektumban is benne van. Ez azonban a végleges modellben biztosan nem maradhat így, mert nem lehetne visszaexportálni 'M' modellé, ugyanis az nem kezel ilyen esetet. Hogy ezt ne keljen fejben tartanunk meg tudjuk jelölni. Tehetünk az attribútumra egy 'May' annotációt mind a két objektum részéről. A szemléltető ábrán ez úgy van ábrázolva, hogy az attribútumot és objektumot összekötő vonalat megjelöljük (MayExist) (TODOÁBRA). Így a modellre rátekintve leolvasható, hogy van egy attribútum aminek nem tudjuk a pontos hovatartozását.(???var vagy abs esetleg)
+Eddigi módosításokhoz még nem kellett a részleges modell lehetőségeit felhasználni, ezt az eredeti modellben is megtehettük volna. Most viszont egy attribútumot hozzáadunk a modellhez anélkül, hogy az bármelyik objektumhoz is kapcsolódna. Ez az attribútum legyen a 'szín' nevű, aminek típusa 'String'. Ezután ezt az attribútumot mivel még nem tudjuk  hova is tartozzon dönthetünk úgy hogy több objektumhoz is hozzákapcsoljuk, például kerékhez is és az ajtóhoz is.
+Jelen pillanatban akkor van egy attribútumunk, ami két különböző objektumban is benne van. Ez azonban a végleges modellben biztosan nem maradhat így, mert nem lehetne visszaexportálni 'M' típusú modellé, ugyanis az nem kezel ilyen esetet. Hogy ezt ne keljen fejben tartanunk meg tudjuk jelölni. Tehetünk az attribútumra egy 'May' annotációt mind a két objektum részéről. A szemléltető ábrán ez úgy jelenik meg, hogy az attribútumot és objektumot összekötő vonalat megjelöljük (MayExist) . Ezután egy meglévő 'Kerék' objektumot is megjelölünk 'Set' annotációval, ami azt jelenti, hogy több ilyen kerék elem lehet a modellben , de az is lehet hogy marad egyedi elemnek. Így a modellre rátekintve leolvasható, hogy van egy attribútum aminek nem tudjuk a pontos hovatartozását és egy másik, aminek a multiplicitása kérdéses. Megjelölések után a modell így fog kinézni \autoref{pl03}.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=100mm]{figures/pl03.pdf}
+	\caption{Részlegesség hozzárendelése a modell elemeihez} 
+	\label{pl03}
+\end{figure}.
 \par
-A modellt lehetséges finomítani és szükséges is, ha vissza szeretnénk nyerni egy 'M'-el megegyező típusú modellt. Finomítás következtében eltüntethetjük az annotációkat és azokkal együtt a bizonytalanságokat is. Első lépésben finomítsuk az attribútumot. Fixáljuk le, hogy melyik objektumhoz fog tartozni.(TODOÁBRA)
+A modellt lehetséges finomítani és szükséges is, ha vissza szeretnénk nyerni egy 'M'-el megegyező típusú modellt. Finomítás következtében eltüntethetjük az annotációkat és azokkal együtt a bizonytalanságokat is. Első lépésben finomítsuk az attribútumot. Fixáljuk le, hogy melyik objektumhoz fog tartozni. Így a 'szín' csak az ajtó attribútuma lesz. A modell ekkor még tartalmaz részlegességet, ezért a finomítást folytatjuk.
+A 'Set' részlegességet is feloldjuk, aminek következtében egy új elem jön létre, a pótkerék. Ez az új objektum megörököl minden tulajdonságot ami a kerékben is megvan.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=100mm]{figures/pl04.pdf}
+	\caption{Finomított modell visszaalakítása (exportálás)} 
+	\label{pl04}
+\end{figure}
 \par
-Végül, ha már a modellünk nem tartalmaz részlegességet akkor vissza is alakíthatjuk az eredeti 'M' modell típusával megegyező típusú modellé.(TODOÁBRA)
+Végül, mivel már a modellünk nem tartalmaz részlegességet, és módosítani se kívánjuk, akár vissza is alakíthatjuk az eredeti 'M' modell típusával megegyező típusú modellé (lásd \autoref{pl04}).
