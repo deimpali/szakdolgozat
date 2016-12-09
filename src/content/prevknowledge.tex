@@ -38,7 +38,7 @@ Lehetőség van a modell finomítására is (lásd \autoref{finomit}). Finomít�
 \end{figure}
 
 \subsection{Szintaktika}
-Részleges modellek esetén annotációkkal lehet megjelölni a modellt, illetve annak elemeit. Modellezés során négy fajta részlegességet jelölhetünk meg \cite{Salay}. Annotációk a modell minden elemére kerülhetnek, lehet attribútumra, objektumokra, élekre vagy akár magára a modellre is.
+Részleges modellek esetén annotációkkal lehet megjelölni a modellt, illetve annak elemeit. Ez úgy valósítható meg, hogy vesszük egy modell gráfreprezentációját, és az abban lévő báziselemekre annotációkat helyezünk el. Modellezés során négy fajta részlegességet jelölhetünk meg. Annotációk a modell minden elemére kerülhetnek, lehet attribútumra, objektumokra, élekre vagy akár magára a modellre is.
 \begin{itemize}  
 	\item May: modellelemre vonatkozik
 	\item Set: modellelemre vonatkozik
@@ -48,6 +48,7 @@ Részleges modellek esetén annotációkkal lehet megjelölni a modellt, illetve
 
 
 \subsection{Szemantika}
+Alábbi fejezetben bemutatom, hogy hogyan jelenhetnek meg parciális modellben a különböző részlegességek.
 \subsubsection{May}
 Annotációkkal láthatjuk el a modellt az alapján, hogy egy modellelem biztosan benne lesz a végleges modellben, vagy pedig még bizonytalan a léte. \textsf{’M’} May exist (lehet, hogy benne lesz a végleges modellben, de lehet, hogy nem), \textsf{’E’} Must exist (biztosan benne lesz a végleges modellben). A modell finomításával lépésről lépésre egyre kevesebb ’M’ lesz.  \textsf{’M’} az vagy átvált \textsf{’E’}–re, vagy teljesen kikerül a modellből. Akkor tekinthető a modell véglegesnek, ha már nem szerepel benne \textsf{’M’}-el megjelölt elem. Továbbiakban az \textsf{’E’} jelöléssel nem foglalkozom, mert amelyik elemen nincs annotáció, az benne van a modellben.
 \par

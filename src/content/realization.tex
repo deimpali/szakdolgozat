@@ -53,7 +53,7 @@ Egy általános modell elemekből áll, amik tulajdonságokkal rendelkeznek, az 
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=150mm]{figures/partialmodel01.pdf}
+	\includegraphics[width=140mm]{figures/partialmodel01.pdf}
 	\caption{Általános modell, ami legtöbb modell metamodelljének tekinthető} 
 	\label{model}
 \end{figure}
@@ -92,7 +92,7 @@ Minden egyes modellbeli elemhez tudnunk kell társítani annotációkat. Ezt a P
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=150mm]{figures/partialmodel02.pdf}
+	\includegraphics[width=100mm]{figures/partialmodel02.pdf}
 	\caption{Általános modell kiegészítve részleges modellekre jellemző tulajdonságokkal}
 	\label{partialmodel} 
 \end{figure}
@@ -124,7 +124,7 @@ Funkciók:
 A felületen szürke vonalként jelenik meg. Összeköthet PSObject-et attribútummal vagy egy másik PSObject-el. Utóbbi esetben a vonal végén nyíl is van. A referencián szövegesen megjelenik neve és zárójelben a hozzá tartozó részlegességek is. Amennyiben rákattintunk a referencia vonalára kétszer, akkor egy új ablak jelenik meg. Ebben az ablakban egy narancssárga négyzeten a referencia neve van. Ez azért fontos mert itt tudunk hozzáadni részlegességeket a referenciához a későbbiekben (lásd \autoref{ref}).
 \begin{figure}[!ht]
 	\centering
-	\includegraphics{figures/ref.PNG}
+	\includegraphics[scale = 0.3]{figures/ref.pdf}
 	\caption{PSReference (baloldalt a részleges modellen megjelenő formában vonalként, jobb oldalon a rákattintás utáni nézet látható)}
 	\label{ref} 
 \end{figure}
@@ -170,7 +170,7 @@ Funkciók:
 A szerkesztőfelületen világoszöld téglalapként jelenik meg az elem mellett, amihez hozzá lett rendelve (lásd \autoref{part}). Referencia esetén zárójelben látszik az él neve előtt, de ha kétszer rákattintunk a referenciára, hogy megnyissuk a szerkesztőfelületét, ott az élet reprezentáló narancssárga téglalap mellett fog megjelenni (lásd \autoref{obj}).
 \begin{figure}[!ht]
 	\centering
-	\includegraphics{figures/part.png}
+	\includegraphics[scale = 0.3]{figures/part.pdf}
 	\caption{PSType (baloldalt a részleges modell szerkesztőfelülete, jobb oldalon a referencia szerkesztőfelülete)}
 	\label{part} 
 \end{figure}
@@ -186,7 +186,7 @@ A szerkesztőfelületen világoszöld téglalapként jelenik meg az elem mellett
 Duplán kattintva a PSType-ra történik meg a feloldása a részlegességnek. A PSType-nak három fajtája van, amik különböző módokon viselkednek attól függően, hogy milyen típusú elemre vannak rátéve, ezért ezeket külön tárgyalom. 
 
 \subsubsection{PSObject-May részlegesség feloldása}
-Feloldásnál az objektum kitörli a belőle kivezető éleket, majd az összes más objektumból rá mutató élet. Kitörli az attribútumra mutató éleket is és amennyiben az adott attribútumra nem vezet más objektumból él akkor az is törlődik (lásd \autoref{objmay}). Ezután maga az objektum is törlődik.
+Feloldásnál az objektum kitörli a belőle kivezető éleket, majd az összes más objektumból rá mutató élet. Kitörli az attribútumra mutató éleket is és amennyiben az adott attribútumra nem vezet más objektumból él akkor az is törlődik (lásd \autoref{objmay}). Ezután maga az objektum is törlődik. A feloldást egyszerűen az annotáció törlésével is meg lehet oldani.
 %Aql feltétel, ami azt vizsgálja, hogy nem vezet-e más objektumból él az attribútumba:
 %\begin{align}
 % aql:ref.targetAttribute.references->forAll(x | x.sourceObject = element.eContainer())
@@ -241,7 +241,7 @@ Létrejön egy új attribútum és ugyan ahhoz az PSObject-hez fog tartozni mint
 Az eredeti referencia forrásobjektumában létrehoz egy újat, ami ugyan arra az objektumra mutat (lásd \autoref{refset}).
 
 \subsubsection{PSReferenceToAttribute-Set részlegesség feloldása}
-Az eredeti referencia forrásobjektumában létrehoz egy újat, ami ugyan arra az attribútumra mutat, ezután a célattribútum referenciái közé is hozzáadjuk az új élet(lásd \autoref{refset}).
+Az eredeti referencia forrásobjektumában létrehoz egy újat, ami ugyan arra az attribútumra mutat, ezután a célattribútum referenciái közé is hozzáadjuk az új élet (lásd \autoref{refset}).
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=100mm]{figures/refset.pdf}

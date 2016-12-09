@@ -10,10 +10,16 @@
 
 %Jelen dokumentum egy diplomaterv sablon, amely formai keretet ad a BME Villamosmérnöki és Informatikai Karán végző hallgatók által elkészítendő szakdolgozatnak és diplomatervnek. A sablon használata opcionális. Ez a sablon \LaTeX~alapú, a \emph{TeXLive} \TeX-implementációval és a PDF-\LaTeX~fordítóval működőképes.
 
-Informatika világában manapság egyre elterjedtebb rendszerek és szoftverek fejlesztésénél, hogy modellező eszközöket használunk. Ezen eszközök hatékonyabbá teszik a tervezési munkálatokat, azonban többségük nem biztosít lehetőséget arra, hogy hiányos, vagy hibás modelleket készítsünk. A szoftver általában már a tervezés alatt is megkövetelik azt, hogy a modellünk jólformált és teljes legyen. Ez sokszor olyan döntések meghozatalát kényszeríti ki, amivel nem szeretnénk a tervezés azon szakaszában foglalkozni. Ilyen esetben a legtöbb, amit tehetünk, hogy megjegyzéseket írunk fel. Jó lenne egy olyan eszköz, ami a modellezés absztrakciós szintjén képes kezelni az ilyen döntéseket. 
+Informatika világában manapság egyre elterjedtebb rendszerek és szoftverek fejlesztésénél, hogy modellező eszközöket használunk. Ezen eszközök hatékonyabbá teszik a tervezési munkálatokat, azonban többségük nem biztosít lehetőséget arra, hogy hiányos, vagy hibás modelleket készítsünk. 
+\par
+A szoftver általában már a tervezés alatt is megkövetelik azt, hogy a modellünk jólformált és teljes legyen. Ez sokszor olyan döntések meghozatalát kényszeríti ki, amivel nem szeretnénk a tervezés azon szakaszában foglalkozni. Ilyen esetben a legtöbb, amit tehetünk, hogy megjegyzéseket írunk fel. 
+\par
+Jó lenne egy olyan eszköz, ami a modellezés absztrakciós szintjén képes kezelni az ilyen döntéseket. 
 Egyre többen foglalkoznak ezzel a kérdéssel, és sokféle megközelítés született már a problémára. Így került előtérbe a parciális modell és a MAVO (May-Arbitrary-Variable-Open word) absztrakció is. 
 \par
 Dolgozatomban egy olyan általános célú modellező környezetet mutatok be, aminek segítségével lehetséges részleges modelleket létrehozni és szerkeszteni. Az eszköz a MAVO absztrakciót támogatja. Ez úgy jelenik meg, hogy annotációkkal lehet felruházni a bizonytalan elemeket a modellben. Illetve egy esetben, az 'Open world' esetében magát a modellt lehet megjelölni. Az annotációk nem csupán jelzés értékűek, hanem funkcionalitás is társul hozzájuk. A modellező eszköz biztosít az annotációk feloldására automatizált megoldást, ezt finomításnak nevezik. Ezáltal csökkenthető a modell részlegessége, ami végül egy olyan modellhez vezethet, amiben egyáltalán nincsen annotáció, tehát teljes.
+\par
+Végeredményben, tehát a szerkesztővel minőségibb tervezés lehet megvalósítani, jobb dokumentálhatóságot biztosít és a prototípus gyártást is meggyorsítja.
 
 
 \vfill
@@ -27,6 +33,15 @@ Dolgozatomban egy olyan általános célú modellező környezetet mutatok be, a
 
 %This document is a \LaTeX-based skeleton for BSc/MSc~theses of students at the Electrical Engineering and Informatics Faculty, Budapest University of Technology and Economics. The usage of this skeleton is optional. It has been tested with the \emph{TeXLive} \TeX~implementation, and it requires the PDF-\LaTeX~compiler.
 
+In the world of IT it is increasingly popular these days to use modelling tools in the development of systems and softwares. These tools make the design more efficient but most of them are incapable of creating incomplete models. 
+\par
+Sofwares usually determine already at the design phase that the model is appropriately constructed and complete. This often leads to decisions that should not be necessary to deal with at this early stage of the designing process. The best we can do in such a case is to leave comments.
+\par
+A device that could handle this type of decisions on an abstract level of modelling would come handy. More and more professionals are busy with this problem and there are already several possible solutions from varous perspectives around. This is how the parcial model and the MAVO (May-Arbitrary-Variable-Open word) abstractions have come to the fore.
+\par
+In my thesis I will demonstrate a general modelling environment with the help of which it is possible to create and construct partial models. The tool supports the MAVO abstraction.  This works based on the possibility to assign annotations to uncertain elements in the model. And in the case of the 'Open world' the model itself can be assigned. The annotations are not only signs but they are also functional. The modelling tool provides an automated solution to unlock the annotations, which is called refinement. Thus the partiality of the model can be gradually reduced as far as it is complete and does not contain any annotations.
+\par
+In the end, it is possible to realize a quality design with the editor, which results in more precise documentation and speeds up the production.
 
 \vfill
 \selectthesislanguage

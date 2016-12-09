@@ -6,9 +6,10 @@
 %(technológia nélkül)
 
 \section{Parciális modell szerkesztő funkciói}
-Kutatásom során megnéztem egy másik modellezőeszközt, ami a 'May' részlegesség feloldására nyújt megoldást és ezzel kapcsolatos döntéstámogatást szolgáltat\cite{Michalis}. A többi részlegesség kezelését nem teszi lehetővé. célom egy olyan modellező eszköz elkészítése, ami segítségével lehetséges részleges modelleket készíteni. Ehhez olyan vizuális szerkesztőfelület társul, ami megkönnyíti ezt a folyamatot. Ahhoz, hogy ez generikusan működjön egy általános modell szükséges. Így ez a modell tartalmazni fog objektumokat, attribútumokat és az ezek közti kapcsolatot kifejező referenciákat. Ezen felül minden elemhez lehetséges rendelni \textit{May}, \textit{Var} vagy \textit{Abs} részlegességet. Magához a modellhez pedig \textit{OW} részlegességet lehet rendelni.
-\par
-A kapcsolódó editor képes részleges modellt létrehozni és manipulálni. Lehetőséget ad új objektumok, attribútumok, referenciák létrehozására. Ezen elemekhez a már fent említett részlegességek rendelhetők. Objektumhoz hozzárendelve a 'May' vagy 'Abs' részlegességet az a benne lévő attribútumokra, illetve a hozzá tartozó összes referenciára érvényes lesz. Ez azt jelenti, hogy 'May' esetén az objektumban lévő attribútumok és referenciák létezése, és multiplicitása az objektum lététől vagy multiplicitásától függ.  'Var' annotáció esetén ez csak az objektumra vonatkozik, tehát ha több objektumot összeolvasztunk, azok attribútumai megmaradnak csak más objektum fogja legfeljebb tartalmazni őket. Attribútumnál és referenciánál mindhárom részlegességet csak önmagára értelmezzük. A szerkesztő a részlegességek feloldására, tehát finomításra is biztosít eszközöket, figyelembe véve az előbbi értelmezéseket. Például egy 'May' részlegesség feloldása egy objektumnál nem csak magát az objektumot törli, hanem referenciáit és attribútumait is.(áttekintő ábra lásd \autoref{overview})
+  Ahhoz, hogy a szerkesztés generikusan (azaz tetszőleges tervezőeszközhöz) működjön egy általános modell szükséges. Így ez a modell tartalmazni fog objektumokat, attribútumokat és az ezek közti kapcsolatot kifejező referenciákat. Ezen felül minden elemhez lehetséges rendelni \textit{May}, \textit{Var} vagy \textit{Abs} részlegességet. Magához a modellhez pedig \textit{OW} részlegességet lehet rendelni (lásd \autoref{overview}).
+
+
+%Objektumhoz hozzárendelve a 'May' vagy 'Abs' részlegességet az a benne lévő attribútumokra, illetve a hozzá tartozó összes referenciára érvényes lesz. Ez azt jelenti, hogy 'May' esetén az objektumban lévő attribútumok és referenciák létezése, és multiplicitása az objektum lététől vagy multiplicitásától függ.  'Var' annotáció esetén ez csak az objektumra vonatkozik, tehát ha több objektumot összeolvasztunk, azok attribútumai megmaradnak csak más objektum fogja legfeljebb tartalmazni őket. Attribútumnál és referenciánál mindhárom részlegességet csak önmagára értelmezzük. A szerkesztő a részlegességek feloldására, tehát finomításra is biztosít eszközöket, figyelembe véve az előbbi értelmezéseket. Például egy 'May' részlegesség feloldása egy objektumnál nem csak magát az objektumot törli, hanem referenciáit és attribútumait is.(áttekintő ábra lásd \autoref{overview})
 
 
 
@@ -21,12 +22,16 @@ A kapcsolódó editor képes részleges modellt létrehozni és manipulálni. Le
 
 
 \section{Fejlesztési lehetőségek}
-Például egy osztálydiagram 'tree editor'-ban való szerkesztése sok dologra nem nyújt lehetőséget. 
-Nem létezhet például attribútum objektum nélkül. Attribútumot nem lehet több objektumhoz is hozzákapcsolni. Kizárólag érvényes modelleket lehet készíteni benne. Azonban a modell tervezése folyamán nem feltétlenül szükséges, hogy ilyen megkötések legyenek, mert ez csak a végső modellnél fontos. A részleges modell szerkesztésénél nincsenek ilyen feltételek. Lehetséges attribútumot létrehozni objektum nélkül, vagy több objektumhoz is hozzá lehet kapcsolni anélkül, hogy ez konfliktust okozna a szerkesztőnek.
-\par
-Parciális modell lehetőséget biztosíthat arra is, hogy példányosítsunk absztrakt osztályokat. Ugyanis egy absztrakt osztály becsomagolható a parciális modell egy objektumába, ezáltal viselkedése megváltozhat. 
-\par
-Egy objektumdiagram esetében a multiplicitás korlátos lehet, amennyiben az osztálydiagramjában erre vonatkozó kikötések szerepelnek. Ha van minimum vagy maximum megszorítás, akkor ezek nem hághatóak át. Tegyük fel, hogy egy 'A' objektum legfeljebb egy 'B' típusú objektumot tartalmazhat. 'B1' és 'B2' is 'B' típusú. Kezdetben nem tudjuk eldönteni még, hogy melyik objektum lesz a végleges modellben, akkor nincs lehetőségünk mindkettőt létrehozni, hogy majd később dönthessük el a sorsukat, hanem az egyiket mindenképp el kell hagyni. Részleges modell ennél megengedőbb és ha szükséges 'B1' és 'B2' objektum is kapcsolódhat 'A' objektumhoz.
+Egy osztálymodellt olyan programmal szerkesztjük, ami fa struktúrában jeleníti meg a modellt. Tehát például az attribútum csak egy másik osztály gyereke lehet, akkor nem létezhet attribútum objektum nélkül. Attribútumot nem lehet több objektumhoz is hozzákapcsolni. Kizárólag érvényes modelleket lehet készíteni benne. Azonban a modell tervezése folyamán nem feltétlenül szükséges, hogy ilyen megkötések legyenek, mert ez csak a végső modellnél fontos. A részleges modell szerkesztésénél nincsenek ilyen feltételek (lásd \autoref{overview}). 
+%Az editor képes modellt létrehozni és manipulálni. Lehetőséget ad új objektumok, attribútumok, referenciák létrehozására. És ezen felül elemekhez és modellhez a már említett részlegességek rendelhetők.
+
+\begin{itemize}  
+	\item Az editor képes modellt létrehozni és manipulálni. Lehetőséget ad új objektumok, attribútumok, referenciák létrehozására.
+	\item Elemekhez és a modellhez a már említett részlegességeket hozzá lehet rendelni.
+	\item Lehetséges attribútumot létrehozni objektum nélkül, vagy több objektumhoz is hozzá lehet kapcsolni anélkül, hogy ez konfliktust okozna a szerkesztőnek.
+	\item Parciális modell lehetőséget biztosíthat arra is, hogy példányosítsunk absztrakt osztályokat. Ugyanis egy absztrakt osztály becsomagolható a parciális modell egy objektumába, ezáltal viselkedése megváltozhat.
+	\item Egy objektumdiagram esetében a multiplicitás korlátos lehet, amennyiben az osztálydiagramjában erre vonatkozó kikötések szerepelnek. Ha van minimum vagy maximum megszorítás, akkor ezek nem hághatóak át. Tegyük fel, hogy egy 'A' objektum legfeljebb egy 'B' típusú objektumot tartalmazhat. 'B1' és 'B2' is 'B' típusú. Kezdetben nem tudjuk eldönteni még, hogy melyik objektum lesz a végleges modellben, akkor nincs lehetőségünk mindkettőt létrehozni, hogy majd később dönthessük el a sorsukat, hanem az egyiket mindenképp el kell hagyni. Részleges modell ennél megengedőbb és ha szükséges 'B1' és 'B2' objektum is kapcsolódhat 'A' objektumhoz. Egy parciális modellnek nem kell összefüggőnek lennie és számára az inverz élek betartása sem kötelező.	  	
+\end{itemize}
 
 \section{Esettanulmány}
 A következő példában, ami egy járműnek a modellje bemutatom, hogy egy parciális modellszerkesztő milyen lehetőségeket biztosít. Tételezzük fel, hogy egy már meglévő modellt 'M' szeretnénk parciális modellként kezelni. Ehhez az első lépés, hogy importáljuk a modellt. Ez azt jelenti, hogy minden egyes elemét (Objektum, attribútum, referencia) megfeleltetjük egy részleges modellbeli elemmel (lásd \autoref{import}). Az így kapott eredmény egy parciális modell, amit nevezzünk 'PM'-nek.
@@ -64,3 +69,10 @@ A 'Set' részlegességet is feloldjuk, aminek következtében egy új elem jön 
 \end{figure}
 \par
 Végül, mivel már a modellünk nem tartalmaz részlegességet, és módosítani se kívánjuk, akár vissza is alakíthatjuk az eredeti 'M' modell típusával megegyező típusú modellé (lásd \autoref{pl04}).
+
+\section{Kapcsolódó munkák}
+Kutatásom során megnéztem egy másik modellezőeszközt, ami a 'May' részlegesség feloldására nyújt megoldást és ezzel kapcsolatos döntéstámogatást szolgáltat. A többi részlegesség kezelését nem teszi lehetővé (\cite{Michalis}). 
+\par
+Egy másik tanulmányban megismerkedtem egy generikus parciális modell keretrendszerével, ami lehetővé teszi a MAVO absztrakciók kezelését (\cite{SalayR}).
+\par
+Egy harmadik tanulmányban arra találtam megoldást, hogy miként lehet kibővíteni egy meglévő modellt, hogy képesek legyen részlegesség kezelésére. Ebben a cikkben is MAVO absztrakció alkalmazása volt középpontban (\cite{Salay}).
